@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevatedPixels | Selected Works</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'display': ['Antonio', 'sans-serif'], 'body': ['Inter', 'sans-serif'] },
+                    colors: { 'carbon': '#0A0A0A', 'hyper-green': '#CCFF00' },
+                    letterSpacing: { 'tightest': '-0.04em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-carbon text-white font-body antialiased selection:bg-hyper-green selection:text-black">
+
+    <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
+        <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
+            
+            <a href="index.html" class="text-xl font-display tracking-tightest uppercase">
+                Elevated<span class="text-hyper-green">.</span>Pixels
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
+                <a href="about.html" class="hover:text-white hover:text-hyper-green transition-colors">About</a>
+                <a href="strategy.html" class="hover:text-white hover:text-hyper-green transition-colors">Strategy</a>
+                <a href="work.html" class="text-white border-b border-hyper-green pb-1">Work</a>
+                <a href="#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
+            </div>
+
+            <a href="#footer" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                Start Project
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 md:px-12 border-b border-white/10">
+        <div class="max-w-[1600px] mx-auto">
+            <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Case_Study_Archive</span>
+            <h1 class="font-display text-[5rem] md:text-[8rem] leading-[0.85] uppercase mt-4">
+                Selected <br> <span class="text-gray-500">Works.</span>
+            </h1>
+        </div>
+    </header>
+
+    <main class="border-b border-white/10">
+        <div class="group border-b border-white/10 grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
+            <div class="p-8 md:p-16 flex flex-col justify-between border-r border-white/10">
+                <div>
+                    <span class="font-mono text-xs text-gray-500">01 / FINTECH</span>
+                    <h2 class="font-display text-6xl mt-4 mb-6 group-hover:text-hyper-green transition-colors">Nova Bank</h2>
+                    <p class="text-gray-400 max-w-md leading-relaxed">
+                        A complete digital transformation for a neo-bank. We engineered a WebGL landing page that visualizes real-time transaction data.
+                    </p>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">React</span>
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Three.js</span>
+                </div>
+            </div>
+            <div class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+            </div>
+        </div>
+
+        <div class="group border-b border-white/10 grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
+             <div class="relative overflow-hidden order-2 md:order-1 border-r border-white/10">
+                <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+            </div>
+            <div class="p-8 md:p-16 flex flex-col justify-between order-1 md:order-2">
+                <div>
+                    <span class="font-mono text-xs text-gray-500">02 / E-COMMERCE</span>
+                    <h2 class="font-display text-6xl mt-4 mb-6 group-hover:text-hyper-green transition-colors">Aura Wear</h2>
+                    <p class="text-gray-400 max-w-md leading-relaxed">
+                        Headless Shopify storefront built for speed. 99/100 Lighthouse score with seamless page transitions and 3D product previews.
+                    </p>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Next.js</span>
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Shopify API</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="group grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
+            <div class="p-8 md:p-16 flex flex-col justify-between border-r border-white/10">
+                <div>
+                    <span class="font-mono text-xs text-gray-500">03 / SAAS</span>
+                    <h2 class="font-display text-6xl mt-4 mb-6 group-hover:text-hyper-green transition-colors">Data Flow</h2>
+                    <p class="text-gray-400 max-w-md leading-relaxed">
+                        Dashboard UI for a high-volume data analytics platform. Dark mode optimized, highly responsive, and built for complex data visualization.
+                    </p>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Vue 3</span>
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">D3.js</span>
+                </div>
+            </div>
+            <div class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                
+                <div class="flex flex-col gap-8">
+                    <div class="text-gray-500 uppercase tracking-widest text-xs">/// Initialize_Project</div>
+                    
+                    <h2 class="font-display text-5xl md:text-7xl uppercase leading-[0.9]">
+                        Ready to <br>
+                        <span class="text-hyper-green">Elevate?</span>
+                    </h2>
+
+                    <div class="w-full max-w-md bg-gray-900/50 border border-white/20 p-4 flex items-center gap-2 font-mono text-lg">
+                        <span class="text-hyper-green">➜</span>
+                        <span class="text-gray-400">~/project_inquiry/</span>
+                        <input type="email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0">
+                        <div class="w-2 h-5 bg-hyper-green animate-pulse"></div>
+                    </div>
+
+                    <button class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">
+                        [ Execute Launch ]
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-10 opacity-70">
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Sitemap</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="index.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Index.html</a></li>
+                            <li><a href="about.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">About_Us.md</a></li>
+                            <li><a href="work.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Work.vue</a></li>
+                            <li><a href="strategy.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Strategy.json</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Social_Root</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">LinkedIn_Profile</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">GitHub_Repo</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Instagram_Feed</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 ElevatedPixels. All systems operational.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span>STATUS: ONLINE</span>
+                    <span>PING: 14ms</span>
+                    <span>SERVER: US-EAST-1</span>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

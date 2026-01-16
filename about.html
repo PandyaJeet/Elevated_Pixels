@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevatedPixels | About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'display': ['Antonio', 'sans-serif'], 'body': ['Inter', 'sans-serif'] },
+                    colors: { 'carbon': '#0A0A0A', 'hyper-green': '#CCFF00' },
+                    letterSpacing: { 'tightest': '-0.04em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-carbon text-white font-body antialiased selection:bg-hyper-green selection:text-black">
+
+    <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
+        <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
+            
+            <a href="index.html" class="text-xl font-display tracking-tightest uppercase">
+                Elevated<span class="text-hyper-green">.</span>Pixels
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
+                <a href="about.html" class="text-white border-b border-hyper-green pb-1">About</a>
+                <a href="strategy.html" class="hover:text-white hover:text-hyper-green transition-colors">Strategy</a>
+                <a href="work.html" class="hover:text-white hover:text-hyper-green transition-colors">Work</a>
+                <a href="#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
+            </div>
+
+            <a href="#footer" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                Start Project
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 md:px-12 border-b border-white/10 relative overflow-hidden">
+        <div class="absolute top-20 right-0 opacity-10 font-display text-[20rem] leading-none text-white select-none pointer-events-none">
+            001
+        </div>
+
+        <div class="max-w-[1600px] mx-auto relative z-10">
+            <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Source_Code</span>
+            <h1 class="font-display text-[5rem] md:text-[8rem] leading-[0.85] uppercase mt-4 mb-8">
+                The Origin <br> Story.
+            </h1>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            
+            <div>
+                <h2 class="font-display text-4xl mb-8 text-white">The Merge Conflict.</h2>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        <span class="text-white font-bold">ElevatedPixels</span> didn't start as an agency. It started as a debate.
+                    </p>
+                    <p>
+                        On one side, there was <span class="text-hyper-green">Prince Patel</span>, obsessed with visual synthesis, typography, and the psychology of user flow. On the other, <span class="text-hyper-green">Jeet Pandya</span>, fixated on clean architecture, database scalability, and load velocity.
+                    </p>
+                    <p>
+                        Designers usually ignore code constraints. Developers usually ignore pixel perfection. We realized that by merging these two repositories, we could build something rare: <span class="text-white">A digital product that looks like art but performs like a machine.</span>
+                    </p>
+                </div>
+                
+                <div class="mt-12 flex gap-12 font-mono text-xs text-gray-500 uppercase tracking-widest">
+                    <div>
+                        <span class="block text-white mb-1">Jeet Pandya</span>
+                        <span>[ Co-Founder // Dev ]</span>
+                    </div>
+                    <div>
+                        <span class="block text-white mb-1">Prince Patel</span>
+                        <span>[ Co-Founder // Design ]</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative h-[400px] border border-white/10 bg-white/5 p-8 flex items-center justify-center overflow-hidden group">
+                <div class="absolute top-0 left-1/4 w-[1px] h-1/2 bg-white/20 group-hover:h-[55%] transition-all duration-700"></div>
+                <div class="absolute bottom-0 right-1/4 w-[1px] h-1/2 bg-hyper-green/50 group-hover:h-[55%] transition-all duration-700"></div>
+                
+                <div class="w-32 h-32 border border-white/20 rounded-full flex items-center justify-center relative z-10 bg-carbon">
+                    <div class="w-24 h-24 bg-hyper-green/10 rounded-full animate-pulse"></div>
+                    <span class="absolute font-display text-2xl">EP</span>
+                </div>
+                
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20">
+                    <line x1="25%" y1="50%" x2="50%" y2="50%" stroke="white" stroke-width="1" />
+                    <line x1="75%" y1="50%" x2="50%" y2="50%" stroke="#CCFF00" stroke-width="1" />
+                </svg>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="flex flex-col gap-8">
+                    <div class="text-gray-500 uppercase tracking-widest text-xs">/// Initialize_Project</div>
+                    <h2 class="font-display text-5xl md:text-7xl uppercase leading-[0.9]">Ready to <br><span class="text-hyper-green">Elevate?</span></h2>
+                    <div class="w-full max-w-md bg-gray-900/50 border border-white/20 p-4 flex items-center gap-2 font-mono text-lg">
+                        <span class="text-hyper-green">➜</span>
+                        <span class="text-gray-400">~/project_inquiry/</span>
+                        <input type="email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0">
+                        <div class="w-2 h-5 bg-hyper-green animate-pulse"></div>
+                    </div>
+                    <button class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">[ Execute Launch ]</button>
+                </div>
+                <div class="grid grid-cols-2 gap-10 opacity-70">
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Sitemap</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="index.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Index.html</a></li>
+                            <li><a href="about.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">About_Us.md</a></li>
+                            <li><a href="work.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Work.vue</a></li>
+                            <li><a href="strategy.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Strategy.json</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Social_Root</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">LinkedIn_Profile</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">GitHub_Repo</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Instagram_Feed</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 ElevatedPixels. All systems operational.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span>STATUS: ONLINE</span><span>PING: 14ms</span><span>SERVER: US-EAST-1</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const terminalInput = document.querySelector('footer input');
+        const terminalButton = document.querySelector('footer button');
+        if (terminalButton && terminalInput) {
+            terminalButton.onclick = () => runTerminalCommand();
+            terminalInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') runTerminalCommand(); });
+        }
+        function runTerminalCommand() {
+            const val = terminalInput.value;
+            if (!val) { alert("ERROR: INPUT_NULL"); return; }
+            terminalButton.innerHTML = "[ EXECUTING... ]";
+            terminalButton.classList.add('bg-hyper-green');
+            setTimeout(() => {
+                terminalInput.value = '';
+                terminalButton.innerHTML = "[ EXECUTE LAUNCH ]";
+                terminalButton.classList.remove('bg-hyper-green');
+                alert(`COMMAND SENT: ${val}`);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
