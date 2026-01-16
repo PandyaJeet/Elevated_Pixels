@@ -40,12 +40,13 @@
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 md:px-12 border-b border-white/10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-95">
+    <header class="pt-40 pb-20 px-6 md:px-12 border-b border-white/10">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
                 <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Operating_System</span>
                 <h1 class="font-display text-[5rem] md:text-[7rem] leading-[0.85] uppercase mt-4 mb-8">
-                    System <br> Architecture.
+                    System <br> 
+                    <span class="text-gray-500">Architecture.</span>
                 </h1>
             </div>
             <div class="flex items-end pb-4">
@@ -190,5 +191,25 @@
         </div>
     </footer>
 
+    <script>
+        const terminalInput = document.querySelector('footer input');
+        const terminalButton = document.querySelector('footer button');
+        if (terminalButton && terminalInput) {
+            terminalButton.onclick = () => runTerminalCommand();
+            terminalInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') runTerminalCommand(); });
+        }
+        function runTerminalCommand() {
+            const val = terminalInput.value;
+            if (!val) { alert("ERROR: INPUT_NULL"); return; }
+            terminalButton.innerHTML = "[ EXECUTING... ]";
+            terminalButton.classList.add('bg-hyper-green');
+            setTimeout(() => {
+                terminalInput.value = '';
+                terminalButton.innerHTML = "[ EXECUTE LAUNCH ]";
+                terminalButton.classList.remove('bg-hyper-green');
+                alert(`COMMAND SENT: ${val}`);
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
