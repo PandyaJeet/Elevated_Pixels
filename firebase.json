@@ -6,7 +6,7 @@
     "indexes": "firstore.indexes.json"
   },
   "hosting": {
-    "site": "elevatedpixels2026",
+    "site": "elevatedpixels",
     "public": "public",
     "ignore": [
       "firebase.json",
