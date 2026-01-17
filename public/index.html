@@ -11,6 +11,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +30,44 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+
+    // Initialize Firestore and expose helpers for form submissions
+    const db = getFirestore(app);
+    const leadsCollection = collection(db, "leads");
+    const callRequestsCollection = collection(db, "callRequests");
+    const buildRequestsCollection = collection(db, "buildRequests");
+    const emailCapturesCollection = collection(db, "emailCaptures");
+
+    async function saveLead(payload) {
+        return addDoc(leadsCollection, {
+            ...payload,
+            createdAt: serverTimestamp(),
+        });
+    }
+
+    async function saveCall(payload) {
+        return addDoc(callRequestsCollection, {
+            ...payload,
+            createdAt: serverTimestamp(),
+        });
+    }
+
+    async function saveBuild(payload) {
+        return addDoc(buildRequestsCollection, {
+            ...payload,
+            createdAt: serverTimestamp(),
+        });
+    }
+
+        async function saveEmail(payload) {
+            return addDoc(emailCapturesCollection, {
+                ...payload,
+                createdAt: serverTimestamp(),
+            });
+        }
+
+    // Make available to the rest of the page scripts
+        window.EP_FIRESTORE = { saveLead, saveCall, saveBuild, saveEmail };
 </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,27 +117,75 @@
 </head>
 <body class="bg-carbon text-white font-body antialiased selection:bg-hyper-green selection:text-black">
 
-    <div id="contact-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-6">
-        <div class="w-full max-w-2xl bg-carbon border border-white/20 relative transform scale-95 transition-transform duration-300" id="modal-content">
-            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-gray-500 hover:text-hyper-green font-mono text-xl">[X]</button>
+    <!-- Schedule Call Modal -->
+    <div id="schedule-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-6">
+        <div class="w-full max-w-2xl bg-carbon border border-white/20 relative transform scale-95 transition-transform duration-300" id="schedule-modal-content">
+            <button onclick="toggleScheduleModal(false)" class="absolute top-4 right-4 text-gray-500 hover:text-hyper-green font-mono text-xl">[X]</button>
             
             <div class="p-12">
-                <div class="text-xs font-mono text-hyper-green mb-4">/// INITIATE_PROTOCOL</div>
-                <h2 class="font-display text-5xl text-white mb-8">Start The Build</h2>
+                <div class="text-xs font-mono text-hyper-green mb-4">/// SCHEDULE_PROTOCOL</div>
+                <h2 class="font-display text-5xl text-white mb-8">Schedule A Call</h2>
                 
-                <form onsubmit="handleFormSubmit(event)" class="flex flex-col gap-6">
+                <form id="schedule-form" onsubmit="handleScheduleSubmit(event)" class="flex flex-col gap-6">
                     <div>
-                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Identify User</label>
-                        <input type="text" placeholder="Name or Organization" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono">
+                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Name / Org</label>
+                        <input id="user-name" name="name" type="text" placeholder="Name or Organization" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
                     </div>
                     <div>
-                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Transmission</label>
-                        <textarea rows="4" placeholder="Describe project parameters..." class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono"></textarea>
+                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Email</label>
+                        <input id="user-email" name="email" type="email" placeholder="email@domain.com" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Date</label>
+                            <input id="call-date" name="date" type="date" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Time</label>
+                            <input id="call-time" name="time" type="time" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
+                        </div>
                     </div>
                     <button type="submit" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors mt-4">
-                        [ Send Data ]
+                        [ Schedule Call ]
                     </button>
-                </form>
+                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Build Request Modal -->
+    <div id="build-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-6">
+        <div class="w-full max-w-2xl bg-carbon border border-white/20 relative transform scale-95 transition-transform duration-300" id="build-modal-content">
+            <button onclick="toggleBuildModal(false)" class="absolute top-4 right-4 text-gray-500 hover:text-hyper-green font-mono text-xl">[X]</button>
+            
+            <div class="p-12">
+                <div class="text-xs font-mono text-hyper-green mb-4">/// BUILD_REQUEST</div>
+                <h2 class="font-display text-5xl text-white mb-8">Start The Build</h2>
+                
+                <form id="build-form" onsubmit="handleBuildSubmit(event)" class="flex flex-col gap-6">
+                    <div>
+                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Organization</label>
+                        <input id="build-name" name="name" type="text" placeholder="Organization" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Service Needed</label>
+                        <select id="build-service" name="service" class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required>
+                            <option value="" class="text-gray-900">Select service</option>
+                            <option class="text-gray-900" value="Web Design">Web Design</option>
+                            <option class="text-gray-900" value="Web Development">Web Development</option>
+                            <option class="text-gray-900" value="Branding">Branding</option>
+                            <option class="text-gray-900" value="UI/UX">UI/UX</option>
+                            <option class="text-gray-900" value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-500 text-xs uppercase tracking-widest mb-2">Description</label>
+                        <textarea id="build-description" name="description" rows="4" placeholder="Describe project parameters..." class="w-full bg-white/5 border border-white/10 p-4 text-white placeholder-gray-600 focus:border-hyper-green focus:outline-none font-mono" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors mt-4">
+                        [ Submit Request ]
+                    </button>
+                 </form>
             </div>
         </div>
     </div>
@@ -119,9 +206,9 @@
             </nav>
 
             <div class="mt-auto">
-                <button onclick="toggleMobileMenu(false); toggleModal(true)" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors text-xs">
-                    [ Start Project ]
-                </button>
+                    <button data-modal="schedule" onclick="toggleMobileMenu(false); toggleScheduleModal(true)" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors text-xs">
+                        [ Start Project ]
+                    </button>
             </div>
         </div>
     </div>
@@ -140,7 +227,7 @@
                 <a href="#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
             </div>
 
-            <a href="#footer" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+            <a data-modal="schedule" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 cursor-pointer">
                 Start Project
             </a>
 
@@ -176,7 +263,7 @@
             </p>
 
             <div class="flex gap-6 items-center">
-                <button class="group relative px-8 py-4 bg-white text-carbon font-display text-xl uppercase tracking-tighter hover:bg-hyper-green transition-colors duration-300">
+                <button data-modal="build" class="group relative px-8 py-4 bg-white text-carbon font-display text-xl uppercase tracking-tighter hover:bg-hyper-green transition-colors duration-300">
                     Start The Build
                     <span class="absolute -bottom-2 -right-2 w-full h-full border border-white/20 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></span>
                 </button>
@@ -467,11 +554,11 @@
                     <div class="w-full max-w-md bg-gray-900/50 border border-white/20 p-4 flex items-center gap-2 font-mono text-lg">
                         <span class="text-hyper-green">➜</span>
                         <span class="text-gray-400">~/project_inquiry/</span>
-                        <input type="email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0">
+                        <input id="footer-email" type="email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0" required>
                         <div class="w-2 h-5 bg-hyper-green animate-pulse"></div>
                     </div>
 
-                    <button class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">
+                    <button id="footer-submit" class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">
                         [ Execute Launch ]
                     </button>
                 </div>
@@ -534,13 +621,13 @@
         }
     }
 
-    function toggleModal(show) {
-        const modal = document.getElementById('contact-modal');
-        const content = document.getElementById('modal-content');
-        
+    function toggleScheduleModal(show) {
+        const modal = document.getElementById('schedule-modal');
+        const content = document.getElementById('schedule-modal-content');
+        if (!modal || !content) return;
+
         if (show) {
             modal.classList.remove('hidden');
-            // Small timeout to allow display:block to apply before opacity transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 content.classList.remove('scale-95');
@@ -556,16 +643,41 @@
         }
     }
 
-    // Attach Modal triggers to buttons
-    // We look for any button with text 'Start Project' or 'Start The Build'
-    document.querySelectorAll('a, button').forEach(el => {
-        const text = el.innerText.toLowerCase();
-        if (text.includes('start') || text.includes('project')) {
-            el.onclick = (e) => {
-                e.preventDefault();
-                toggleModal(true);
-            };
+    function toggleBuildModal(show) {
+        const modal = document.getElementById('build-modal');
+        const content = document.getElementById('build-modal-content');
+        if (!modal || !content) return;
+
+        if (show) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        } else {
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
         }
+    }
+
+    // Attach modal triggers via data attributes
+    document.querySelectorAll('[data-modal="schedule"]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleScheduleModal(true);
+        });
+    });
+
+    document.querySelectorAll('[data-modal="build"]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleBuildModal(true);
+        });
     });
 
     // --- 3. SCROLL NAVIGATION ---
@@ -589,42 +701,108 @@
         });
     });
 
-    // --- 4. TERMINAL FOOTER LOGIC ---
-    const terminalInput = document.querySelector('footer input');
-    const terminalButton = document.querySelector('footer button');
+    // --- 4. TERMINAL FOOTER LOGIC (EMAIL CAPTURE) ---
+    const footerInput = document.getElementById('footer-email');
+    const footerButton = document.getElementById('footer-submit');
     
-    // Simulate Terminal Execution
-    if (terminalButton && terminalInput) {
-        terminalButton.onclick = () => runTerminalCommand();
-        terminalInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') runTerminalCommand();
+    if (footerButton && footerInput) {
+        footerButton.onclick = () => submitFooterEmail();
+        footerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') submitFooterEmail();
         });
     }
 
-    function runTerminalCommand() {
-        const val = terminalInput.value;
-        if (!val) {
-            showSystemToast("ERROR: INPUT_NULL", true);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    async function submitFooterEmail() {
+        const val = footerInput.value.trim();
+        if (!val || !emailRegex.test(val)) {
+            showSystemToast("ENTER VALID EMAIL", true);
             return;
         }
-        
-        // Visual processing effect
-        terminalButton.innerHTML = "[ EXECUTING... ]";
-        terminalButton.classList.add('bg-hyper-green');
-        
-        setTimeout(() => {
-            terminalInput.value = '';
-            terminalButton.innerHTML = "[ EXECUTE LAUNCH ]";
-            terminalButton.classList.remove('bg-hyper-green');
-            showSystemToast(`COMMAND SENT: ${val}`);
-        }, 1500);
+
+        const saveEmail = window.EP_FIRESTORE?.saveEmail;
+        if (!saveEmail) {
+            showSystemToast("DATA LINK OFFLINE", true);
+            return;
+        }
+
+        footerButton.innerHTML = "[ EXECUTING... ]";
+        footerButton.classList.add('bg-hyper-green');
+
+        try {
+            await saveEmail({ email: val, source: 'footer' });
+            footerInput.value = '';
+            showSystemToast("EMAIL CAPTURED");
+        } catch (err) {
+            console.error('Email capture failed', err);
+            showSystemToast("STORE FAILED. RETRY.", true);
+        } finally {
+            footerButton.innerHTML = "[ EXECUTE LAUNCH ]";
+            footerButton.classList.remove('bg-hyper-green');
+        }
     }
 
     // --- 5. MODAL FORM SUBMIT ---
-    function handleFormSubmit(e) {
+    async function handleScheduleSubmit(e) {
         e.preventDefault();
-        toggleModal(false);
-        showSystemToast("PACKET TRANSMITTED SUCCESSFULLY");
+
+        const name = document.getElementById('user-name')?.value.trim();
+        const email = document.getElementById('user-email')?.value.trim();
+        const date = document.getElementById('call-date')?.value;
+        const time = document.getElementById('call-time')?.value;
+
+        if (!name || !email || !date || !time) {
+            showSystemToast("FILL ALL FIELDS", true);
+            return;
+        }
+
+        const saveCall = window.EP_FIRESTORE?.saveCall;
+        if (!saveCall) {
+            showSystemToast("DATA LINK OFFLINE", true);
+            return;
+        }
+
+        const requestedDateTime = new Date(`${date}T${time}:00`).toISOString();
+
+        try {
+            await saveCall({ name, email, date, time, requestedDateTime });
+            document.getElementById('schedule-form')?.reset();
+            toggleScheduleModal(false);
+            showSystemToast("CALL SCHEDULE REQUEST SENT");
+        } catch (err) {
+            console.error('Call schedule failed', err);
+            showSystemToast("STORE FAILED. RETRY.", true);
+        }
+    }
+
+    async function handleBuildSubmit(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('build-name')?.value.trim();
+        const service = document.getElementById('build-service')?.value;
+        const description = document.getElementById('build-description')?.value.trim();
+
+        if (!name || !service || !description) {
+            showSystemToast("FILL ALL FIELDS", true);
+            return;
+        }
+
+        const saveBuild = window.EP_FIRESTORE?.saveBuild;
+        if (!saveBuild) {
+            showSystemToast("DATA LINK OFFLINE", true);
+            return;
+        }
+
+        try {
+            await saveBuild({ name, service, description });
+            document.getElementById('build-form')?.reset();
+            toggleBuildModal(false);
+            showSystemToast("BUILD REQUEST STORED");
+        } catch (err) {
+            console.error('Build request failed', err);
+            showSystemToast("STORE FAILED. RETRY.", true);
+        }
     }
 
     // --- 6. SYSTEM TOAST (The High-Tech Notification) ---
