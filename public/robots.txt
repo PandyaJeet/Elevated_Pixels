@@ -1,0 +1,29 @@
+# robots.txt for ElevatedPixels
+# https://elevatedpixels.com
+
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+
+# Disallow 404 page (no SEO value)
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://elevatedpixels.com/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
+
+# Google-specific rules
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific rules
+User-agent: Bingbot
+Allow: /
+
+# Block common bot paths (security)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /*.json$
