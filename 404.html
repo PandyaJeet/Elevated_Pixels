@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevatedPixels | 404 System Error</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'display': ['Antonio', 'sans-serif'], 'body': ['Inter', 'sans-serif'] },
+                    colors: { 'carbon': '#0A0A0A', 'hyper-green': '#CCFF00' },
+                    letterSpacing: { 'tightest': '-0.04em' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-carbon text-white font-body antialiased selection:bg-hyper-green selection:text-black flex flex-col min-h-screen overflow-x-hidden">
+
+    <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
+        <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
+            <a href="index.html" class="block">
+                <img src="logo.png" alt="ElevatedPixels" class="h-12 w-auto brightness-0 invert hover:opacity-80 transition-opacity duration-300">
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
+                <a href="about.html" class="hover:text-white hover:text-hyper-green transition-colors">About</a>
+                <a href="strategy.html" class="hover:text-white hover:text-hyper-green transition-colors">Strategy</a>
+                <a href="work.html" class="hover:text-white hover:text-hyper-green transition-colors">Work</a>
+                <a href="index.html#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
+            </div>
+            <a href="index.html#footer" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">Start Project</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center relative pt-20">
+        
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+            
+            <div class="absolute inset-0 opacity-25 mix-blend-luminosity bg-cover bg-center bg-no-repeat" 
+                 style="background-image: url('path/to/your-cyberpunk-agent.jpg');">
+            </div>
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/50 to-transparent"></div>
+        </div>
+
+
+        <div class="relative z-10 text-center px-6 flex flex-col items-center py-20">
+            
+            <div class="mb-12 inline-flex items-center gap-3 border border-red-500/50 bg-red-500/10 px-6 py-2 rounded-full animate-pulse">
+                <div class="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
+                <span class="font-mono text-xs text-red-400 uppercase tracking-[0.2em] font-bold">SYSTEM_PANIC: DATA_CORRUPT</span>
+            </div>
+
+            <h1 class="font-display text-[12rem] md:text-[18rem] leading-none tracking-tight mb-10 flex justify-center gap-1 md:gap-2">
+                <span class="text-white">4</span>
+                <span class="text-hyper-green">0</span>
+                <span class="text-white">4</span>
+            </h1>
+
+            <p class="text-gray-300 max-w-lg text-base md:text-lg leading-relaxed font-mono mb-12">
+                The architecture you are looking for has been deprecated or deleted. The signal has been lost in the void.
+            </p>
+
+            <div class="w-full max-w-xl bg-black/80 backdrop-blur-md border border-white/20 p-6 font-mono text-xs text-left text-gray-500 space-y-2 shadow-2xl relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-white/10"></div>
+                
+                <p>> Ping 127.0.0.1 ... <span class="text-hyper-green">Live</span></p>
+                <p>> Seeking requested path ... <span class="text-red-500 bg-red-500/10 px-2 py-0.5">CRITICAL_FAILURE</span></p>
+                <p>> Error Code: 0x0000404 - MEMORY_DUMP</p>
+                <p class="text-white">> Rerouting traffic <span class="animate-pulse bg-hyper-green text-black px-1">_</span></p>
+            </div>
+
+            <a href="index.html" class="group relative px-12 py-6 bg-hyper-green text-black font-display text-xl uppercase tracking-widest hover:bg-white transition-colors duration-300 mt-16">
+                [ Force System Reboot ]
+            </a>
+
+        </div>
+    </main>
+
+    <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm relative z-10">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="flex flex-col gap-8">
+                    <div class="text-gray-500 uppercase tracking-widest text-xs">/// Initialize_Project</div>
+                    <h2 class="font-display text-5xl md:text-7xl uppercase leading-[0.9]">Ready to <br><span class="text-hyper-green">Elevate?</span></h2>
+                    <div class="w-full max-w-md bg-gray-900/50 border border-white/20 p-4 flex items-center gap-2 font-mono text-lg">
+                        <span class="text-hyper-green">➜</span>
+                        <span class="text-gray-400">~/project_inquiry/</span>
+                        <input type="email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0">
+                        <div class="w-2 h-5 bg-hyper-green animate-pulse"></div>
+                    </div>
+                    <button class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">[ Execute Launch ]</button>
+                </div>
+                <div class="grid grid-cols-2 gap-10 opacity-70">
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Sitemap</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="index.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Index.html</a></li>
+                            <li><a href="about.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">About_Us.md</a></li>
+                            <li><a href="work.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Work.vue</a></li>
+                            <li><a href="strategy.html" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Strategy.json</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Social_Root</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">LinkedIn_Profile</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">GitHub_Repo</a></li>
+                            <li><a href="#" class="hover:text-white hover:text-hyper-green hover:translate-x-2 transition-all block">Instagram_Feed</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 ElevatedPixels. All systems operational.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span>STATUS: ONLINE</span><span>PING: 14ms</span><span>SERVER: US-EAST-1</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        const terminalInput = document.querySelector('footer input');
+        const terminalButton = document.querySelector('footer button');
+        if (terminalButton && terminalInput) {
+            terminalButton.onclick = () => runTerminalCommand();
+            terminalInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') runTerminalCommand(); });
+        }
+        function runTerminalCommand() {
+            const val = terminalInput.value;
+            if (!val) { alert("ERROR: INPUT_NULL"); return; }
+            terminalButton.innerHTML = "[ EXECUTING... ]";
+            terminalButton.classList.add('bg-hyper-green');
+            setTimeout(() => {
+                terminalInput.value = '';
+                terminalButton.innerHTML = "[ EXECUTE LAUNCH ]";
+                terminalButton.classList.remove('bg-hyper-green');
+                alert(`COMMAND SENT: ${val}`);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
