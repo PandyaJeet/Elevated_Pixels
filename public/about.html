@@ -144,7 +144,7 @@
                 <a href="about.html" class="text-white hover:text-hyper-green transition-colors">About</a>
                 <a href="strategy.html" class="text-white hover:text-hyper-green transition-colors">Strategy</a>
                 <a href="work.html" class="text-white hover:text-hyper-green transition-colors">Work</a>
-                <a href="#footer" onclick="toggleMobileMenu(false)" class="text-white hover:text-hyper-green transition-colors">Contact</a>
+                <a href="index.html#contact" onclick="toggleMobileMenu(false)" class="text-white hover:text-hyper-green transition-colors">Contact</a>
             </nav>
 
             <div class="mt-auto">
@@ -157,21 +157,16 @@
 
     <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
         <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
-            
-            <a href="index.html" class="text-xl font-display tracking-tightest uppercase">
-                Elevated<span class="text-hyper-green">.</span>Pixels
+            <a href="index.html" class="block">
+                <img src="logo.png" alt="ElevatedPixels" class="h-12 w-auto brightness-0 invert hover:opacity-80 transition-opacity duration-300">
             </a>
-            
             <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
                 <a href="about.html" class="text-white border-b border-hyper-green pb-1">About</a>
                 <a href="strategy.html" class="hover:text-white hover:text-hyper-green transition-colors">Strategy</a>
                 <a href="work.html" class="hover:text-white hover:text-hyper-green transition-colors">Work</a>
-                <a href="#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
+                <a href="index.html#contact" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
             </div>
-
-            <a href="#footer" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-                Start Project
-            </a>
+            <button onclick="openScheduler()" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">Start Project</button>
 
             <!-- Hamburger Button -->
             <button onclick="toggleMobileMenu(true)" class="md:hidden text-white hover:text-hyper-green transition-colors">
@@ -182,66 +177,433 @@
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 md:px-12 border-b border-white/10 relative overflow-hidden">
-        <div class="absolute top-20 right-0 opacity-10 font-display text-[20rem] leading-none text-white select-none pointer-events-none">
+    <header class="pt-40 pb-24 px-6 md:px-12 border-b border-white/10 relative overflow-hidden">
+        <div class="absolute -right-10 -top-16 md:-right-24 md:-top-32 text-[12rem] md:text-[30rem] font-display font-bold text-white opacity-5 select-none pointer-events-none z-0 leading-none">
             001
         </div>
 
         <div class="max-w-[1600px] mx-auto relative z-10">
-            <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Source_Code</span>
+            <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Origin_Story</span>
             <h1 class="font-display text-[5rem] md:text-[8rem] leading-[0.85] uppercase mt-4 mb-8">
-                The Origin <br> 
-                <span class="text-gray-500">Story.</span>
+                The <br> <span class="text-gray-500">Unit.</span>
             </h1>
+            <p class="text-gray-400 max-w-xl text-lg leading-relaxed border-l-2 border-hyper-green pl-6">
+                We are the synthesis of high-end design and velocity-driven engineering.
+            </p>
         </div>
     </header>
 
-    <section class="py-24 px-6 md:px-12">
+    <section class="py-24 px-6 md:px-12 relative border-b border-white/10 overflow-hidden bg-carbon">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             
-            <div>
-                <h2 class="font-display text-4xl mb-8 text-white">The Merge Conflict.</h2>
-                <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
-                    <p>
-                        <span class="text-white font-bold">ElevatedPixels</span> didn't start as an agency. It started as a debate.
-                    </p>
-                    <p>
-                        On one side, there was <span class="text-hyper-green">Prince Patel</span>, obsessed with visual synthesis, typography, and the psychology of user flow. On the other, <span class="text-hyper-green">Jeet Pandya</span>, fixated on clean architecture, database scalability, and load velocity.
-                    </p>
-                    <p>
-                        Designers usually ignore code constraints. Developers usually ignore pixel perfection. We realized that by merging these two repositories, we could build something rare: <span class="text-white">A digital product that looks like art but performs like a machine.</span>
-                    </p>
+            <div class="relative z-10 self-center">
+                
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-3 h-3 bg-hyper-green rounded-full shadow-[0_0_10px_#CCFF00]"></div>
+                    <span class="font-mono text-sm text-gray-400 uppercase tracking-[0.2em] font-medium">
+                        About_Us // Origin_Story
+                    </span>
                 </div>
                 
-                <div class="mt-12 flex gap-12 font-mono text-xs text-gray-500 uppercase tracking-widest">
+                <h2 class="font-display text-5xl md:text-6xl text-white mb-8 leading-[1.1] tracking-tight">
+                    The Merge <br> 
+                    <span class="text-gray-600">Conflict.</span>
+                </h2>
+                
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed font-light max-w-xl">
+                    <p>
+                        <span class="text-white font-medium">ElevatedPixels</span> didn't start as an agency. It started as a standoff.
+                    </p>
+                    <p>
+                        On one side, <span class="text-white">Prince Patel</span> (Design Lead), obsessed with visual synthesis. On the other, <span class="text-white">Jeet Pandya</span> (Tech Lead), fixated on architectural rigidity.
+                    </p>
+                    <p>
+                        Instead of compromising, we collided. We realized that by acting as a shield against entropy, we could filter out the noise and build <span class="text-hyper-green">digital products that look like art but perform like machines.</span>
+                    </p>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-white/10 flex gap-12 font-mono text-xs text-gray-500 uppercase tracking-widest">
                     <div>
                         <span class="block text-white mb-1">Jeet Pandya</span>
-                        <span>[ Co-Founder // Dev ]</span>
+                        <span>[ 01: Logic_Core ]</span>
                     </div>
                     <div>
                         <span class="block text-white mb-1">Prince Patel</span>
-                        <span>[ Co-Founder // Design ]</span>
+                        <span>[ 02: Visual_Core ]</span>
                     </div>
                 </div>
             </div>
 
-            <div class="relative h-[400px] border border-white/10 bg-white/5 p-8 flex items-center justify-center overflow-hidden group">
-                <div class="absolute top-0 left-1/4 w-[1px] h-1/2 bg-white/20 group-hover:h-[55%] transition-all duration-700"></div>
-                <div class="absolute bottom-0 right-1/4 w-[1px] h-1/2 bg-hyper-green/50 group-hover:h-[55%] transition-all duration-700"></div>
-                
-                <div class="w-32 h-32 border border-white/20 rounded-full flex items-center justify-center relative z-10 bg-carbon">
-                    <div class="w-24 h-24 bg-hyper-green/10 rounded-full animate-pulse"></div>
-                    <span class="absolute font-display text-2xl">EP</span>
+            <div class="flex justify-center md:justify-end mt-12 md:mt-0">
+                <div class="relative w-[500px] h-[500px] bg-black/50 border border-white/10 flex flex-col items-center justify-center overflow-hidden group shadow-[0_0_50px_rgba(0,0,0,0.5)]" id="game-wrapper">
+                    
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%] pointer-events-none z-20"></div>
+
+                    <div class="relative w-[380px] h-[380px] flex items-center justify-center">
+                        <div class="absolute inset-0 bg-hyper-green/5 rounded-full blur-[60px] pointer-events-none"></div>
+                        <div class="absolute inset-0 border border-white/10 rounded-full"></div>
+                        <div class="absolute inset-4 border border-white/5 border-dashed rounded-full animate-[spin_60s_linear_infinite]"></div>
+                        
+                        <canvas id="orbit-canvas" class="relative z-20 rounded-full cursor-none"></canvas>
+                    </div>
+
+                    <div id="hud" class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 z-30">
+                        
+                        <div class="absolute top-6 left-6 text-left">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">System_Record</span>
+                            <span id="hud-high-score" class="block font-display text-xl text-hyper-green">00</span>
+                        </div>
+
+                        <div class="absolute top-6 right-6 text-right">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">Threats_Blocked</span>
+                            <span id="score-el" class="block font-display text-xl text-white">00</span>
+                        </div>
+
+                        <div class="absolute bottom-6 left-6 text-left">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase mb-2">Core_Integrity</span>
+                            <div class="flex gap-1" id="health-bars">
+                                </div>
+                        </div>
+
+                        <div class="absolute bottom-6 right-6 text-right">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">Status</span>
+                            <span class="block font-mono text-xs text-hyper-green animate-pulse">DEFENSE_ACTIVE</span>
+                        </div>
+                    </div>
+
+                    <div id="start-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300">
+                        <div class="text-hyper-green text-4xl mb-4 animate-pulse"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="font-display text-2xl text-white uppercase tracking-widest mb-2">Initialize Shield</h3>
+                        <p class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-6">Mission: Protect The Core</p>
+                        <div class="px-4 py-2 border border-white/20 text-xs font-mono text-white uppercase hover:bg-white hover:text-black transition-colors cursor-pointer">
+                            [ Click to Engage ]
+                        </div>
+                    </div>
+
+                    <div id="gameover-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md z-50 hidden">
+                        <div class="text-red-500 text-3xl mb-2"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3 class="font-display text-xl text-white uppercase tracking-widest mb-1">System Failure</h3>
+                        <p class="font-mono text-[10px] text-red-500 uppercase tracking-widest mb-6">Integrity Critical</p>
+                        
+                        <div class="w-48 border border-white/20 bg-white/5 p-4 mb-6 text-center">
+                            <span class="block font-mono text-[10px] text-gray-400 uppercase">Final_Score</span>
+                            <span id="final-score" class="font-display text-3xl text-white block my-1">00</span>
+                        </div>
+
+                        <button id="retry-btn" class="px-6 py-2 bg-hyper-green text-black font-display uppercase tracking-widest hover:bg-white transition-colors text-sm">
+                            Reboot System
+                        </button>
+                    </div>
+
                 </div>
-                
-                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                    <line x1="25%" y1="50%" x2="50%" y2="50%" stroke="white" stroke-width="1" />
-                    <line x1="75%" y1="50%" x2="50%" y2="50%" stroke="#CCFF00" stroke-width="1" />
-                </svg>
             </div>
 
         </div>
     </section>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('orbit-canvas');
+            const wrapper = document.getElementById('game-wrapper');
+            const startOverlay = document.getElementById('start-overlay');
+            const gameOverOverlay = document.getElementById('gameover-overlay');
+            const hud = document.getElementById('hud');
+            const scoreEl = document.getElementById('score-el');
+            const hudHighScoreEl = document.getElementById('hud-high-score');
+            const finalScoreEl = document.getElementById('final-score');
+            const retryBtn = document.getElementById('retry-btn');
+            const healthBarsContainer = document.getElementById('health-bars');
+
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let width, height, centerX, centerY;
+            
+            // COLORS
+            const COLOR_ACCENT = "#CCFF00"; 
+            const COLOR_CORE_SAFE = "#FFFFFF";
+            const COLOR_CORE_WARN = "#FFCC00";
+            const COLOR_CORE_CRIT = "#FF0000";
+            const COLOR_THREAT = "rgba(255, 255, 255, 0.9)";
+            const COLOR_TRAJECTORY = "rgba(255, 0, 0, 0.4)"; // Red Trajectory
+            
+            // STATE
+            let isPlaying = false;
+            let isGameOver = false;
+            let score = 0;
+            let lives = 3;
+            let highScore = localStorage.getItem('ep_core_highscore') || 0;
+            let angle = 0; 
+            let shieldRadius = 140; 
+            let shieldArc = Math.PI / 2; // 90 degrees
+            
+            // ENTITIES
+            let threats = [];
+            let particles = [];
+            
+            // LOGIC
+            let frames = 0;
+            let spawnRate = 100;
+            let shake = 0;
+
+            // Load High Score Immediately
+            hudHighScoreEl.innerText = highScore.toString().padStart(2, '0');
+
+            function resize() {
+                const size = 380; 
+                canvas.width = size;
+                canvas.height = size;
+                width = size;
+                height = size;
+                centerX = width / 2;
+                centerY = height / 2;
+                shieldRadius = (width / 2) - 30; 
+            }
+
+            function updateHealthUI() {
+                healthBarsContainer.innerHTML = '';
+                for(let i=0; i<3; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'w-1 h-6 transition-colors duration-300 ';
+                    if (i < lives) {
+                        if (lives === 3) bar.className += 'bg-hyper-green shadow-[0_0_8px_#CCFF00]';
+                        else if (lives === 2) bar.className += 'bg-yellow-400 shadow-[0_0_8px_orange]';
+                        else bar.className += 'bg-red-500 shadow-[0_0_8px_red] animate-pulse';
+                    } else {
+                        bar.className += 'bg-gray-800'; 
+                    }
+                    healthBarsContainer.appendChild(bar);
+                }
+            }
+
+            function startGame() {
+                isPlaying = true;
+                isGameOver = false;
+                score = 0;
+                lives = 3;
+                scoreEl.innerText = "00";
+                threats = [];
+                particles = [];
+                frames = 0;
+                spawnRate = 100;
+
+                updateHealthUI();
+                startOverlay.classList.add('opacity-0', 'pointer-events-none');
+                gameOverOverlay.classList.add('hidden');
+                hud.classList.remove('opacity-0');
+            }
+
+            function takeDamage() {
+                lives--;
+                shake = 10; 
+                updateHealthUI();
+                createExplosion(centerX, centerY, "#FF0000");
+
+                if (lives <= 0) {
+                    triggerGameOver();
+                }
+            }
+
+            function triggerGameOver() {
+                isPlaying = false;
+                isGameOver = true;
+                
+                // UNIVERSAL HIGH SCORE (Simulated via LocalStorage)
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('ep_core_highscore', highScore);
+                    hudHighScoreEl.innerText = highScore.toString().padStart(2, '0');
+                }
+
+                finalScoreEl.innerText = score.toString().padStart(2, '0');
+                gameOverOverlay.classList.remove('hidden');
+                hud.classList.add('opacity-0');
+            }
+
+            function spawnThreat() {
+                const spawnAngle = Math.random() * Math.PI * 2;
+                const spawnDist = (width / 2) + 40; 
+                
+                // SPEED SCALING: Starts at 1.5, increases by 0.1 every point
+                // Cap speed at 5.0 to prevent impossible glitches
+                let dynamicSpeed = Math.min(5.0, 1.5 + (score * 0.1));
+
+                threats.push({
+                    x: centerX + Math.cos(spawnAngle) * spawnDist,
+                    y: centerY + Math.sin(spawnAngle) * spawnDist,
+                    speed: dynamicSpeed, 
+                    angle: spawnAngle + Math.PI 
+                });
+            }
+
+            function createExplosion(x, y, color) {
+                for (let i = 0; i < 8; i++) {
+                    particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 4,
+                        vy: (Math.random() - 0.5) * 4,
+                        life: 1.0,
+                        color: color
+                    });
+                }
+            }
+
+            function update() {
+                if (!isPlaying || isGameOver) return;
+                frames++;
+
+                // SPAWN RATE: Spawns get frequent as score goes up
+                let currentRate = Math.max(25, spawnRate - (score * 2)); 
+                if (frames >= currentRate) {
+                    spawnThreat();
+                    frames = 0;
+                }
+
+                // Shake Decay
+                if (shake > 0) shake *= 0.9;
+                if (shake < 0.5) shake = 0;
+
+                // THREAT LOGIC
+                for (let i = threats.length - 1; i >= 0; i--) {
+                    let t = threats[i];
+                    
+                    const dx = centerX - t.x;
+                    const dy = centerY - t.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    t.x += (dx / dist) * t.speed;
+                    t.y += (dy / dist) * t.speed;
+
+                    const distFromCenter = Math.sqrt(Math.pow(t.x - centerX, 2) + Math.pow(t.y - centerY, 2));
+                    
+                    // SHIELD HIT
+                    if (distFromCenter < shieldRadius + 15 && distFromCenter > shieldRadius - 15) {
+                        let threatAngle = Math.atan2(t.y - centerY, t.x - centerX);
+                        let diff = threatAngle - angle;
+                        while (diff < -Math.PI) diff += Math.PI * 2;
+                        while (diff > Math.PI) diff -= Math.PI * 2;
+
+                        if (Math.abs(diff) < shieldArc / 2) {
+                            createExplosion(t.x, t.y, COLOR_ACCENT);
+                            threats.splice(i, 1);
+                            score++;
+                            scoreEl.innerText = score.toString().padStart(2, '0');
+                            continue;
+                        }
+                    }
+
+                    // CORE HIT
+                    if (distFromCenter < 10) {
+                        takeDamage();
+                        threats.splice(i, 1);
+                    }
+                }
+
+                // PARTICLES
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    let p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.life -= 0.05;
+                    if (p.life <= 0) particles.splice(i, 1);
+                }
+            }
+
+            function draw() {
+                ctx.save();
+                if (shake > 0) {
+                    ctx.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake);
+                }
+
+                ctx.clearRect(0, 0, width, height);
+
+                // 1. Radar Grid
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, shieldRadius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // 2. The Core
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 12, 0, Math.PI * 2);
+                if (lives === 3) ctx.fillStyle = COLOR_CORE_SAFE;
+                else if (lives === 2) ctx.fillStyle = COLOR_CORE_WARN;
+                else ctx.fillStyle = COLOR_CORE_CRIT;
+                ctx.shadowColor = ctx.fillStyle;
+                ctx.shadowBlur = 15;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // 3. User Shield
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, shieldRadius, angle - shieldArc / 2, angle + shieldArc / 2);
+                ctx.strokeStyle = COLOR_ACCENT;
+                ctx.lineWidth = 4;
+                ctx.lineCap = "round"; 
+                ctx.shadowColor = COLOR_ACCENT;
+                ctx.shadowBlur = 10;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // 4. Threats + Trajectories
+                threats.forEach(t => {
+                    // Draw Trajectory (Red Line)
+                    ctx.beginPath();
+                    ctx.moveTo(t.x, t.y);
+                    ctx.lineTo(centerX, centerY);
+                    ctx.strokeStyle = COLOR_TRAJECTORY;
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([4, 4]); // Dashed Line
+                    ctx.stroke();
+                    ctx.setLineDash([]); // Reset
+
+                    // Draw Threat
+                    ctx.beginPath();
+                    ctx.fillStyle = COLOR_THREAT;
+                    ctx.fillRect(t.x - 3, t.y - 3, 6, 6);
+                });
+
+                // 5. Particles
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.life;
+                    ctx.fillRect(p.x, p.y, 4, 4);
+                    ctx.globalAlpha = 1.0;
+                });
+
+                ctx.restore();
+                update();
+                requestAnimationFrame(draw);
+            }
+
+            // CONTROLS
+            wrapper.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                angle = Math.atan2(mouseY - (rect.height/2), mouseX - (rect.width/2));
+            });
+
+            // Touch support for mobile play
+            wrapper.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const touchX = e.touches[0].clientX - rect.left;
+                const touchY = e.touches[0].clientY - rect.top;
+                angle = Math.atan2(touchY - (rect.height/2), touchX - (rect.width/2));
+            }, { passive: false });
+
+            startOverlay.addEventListener('click', startGame);
+            retryBtn.addEventListener('click', startGame);
+
+            window.addEventListener('resize', resize);
+            resize();
+            draw();
+
+        })();
+    </script>
 
     <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm">
         <div class="max-w-[1600px] mx-auto px-6 md:px-12">
@@ -366,5 +728,253 @@
             }, 1500);
         }
     </script>
+
+<!-- TACTICAL UPLINK SCHEDULER MODAL -->
+<div id="scheduler-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-4xl bg-[#0A0A0A] border border-white/20 shadow-[0_0_50px_rgba(204,255,0,0.1)] relative flex flex-col md:flex-row overflow-hidden h-[600px]">
+        
+        <div class="w-full md:w-1/3 bg-white/5 border-b md:border-b-0 md:border-r border-white/10 p-8 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-2 h-2 bg-hyper-green animate-pulse rounded-full"></div>
+                    <span class="font-mono text-xs text-hyper-green uppercase tracking-widest">System_Uplink</span>
+                </div>
+                <h3 class="font-display text-3xl text-white uppercase leading-none mb-2">Schedule <br> Briefing</h3>
+                <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Secure Channel Encrypted</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="opacity-50 transition-opacity duration-300" id="summary-date-group">
+                    <span class="block font-mono text-[10px] text-gray-500 uppercase mb-1">Target_Date</span>
+                    <span id="summary-date" class="font-display text-2xl text-white">-- / --</span>
+                </div>
+                <div class="opacity-50 transition-opacity duration-300" id="summary-time-group">
+                    <span class="block font-mono text-[10px] text-gray-500 uppercase mb-1">Time_Window</span>
+                    <span id="summary-time" class="font-display text-2xl text-white">--:--</span>
+                </div>
+            </div>
+
+            <button onclick="closeScheduler()" class="mt-auto text-left font-mono text-xs text-red-500 hover:text-white uppercase tracking-widest transition-colors">
+                [ Abort_Mission ]
+            </button>
+        </div>
+
+        <div class="w-full md:w-2/3 p-8 relative overflow-hidden bg-black">
+            
+            <div id="step-date" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-0">
+                <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest mb-6">Step 01 // Select Date</h4>
+                
+                <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                    <button onclick="changeMonth(-1)" class="text-white hover:text-hyper-green transition-colors">&lt;</button>
+                    <span id="calendar-month-year" class="font-display text-xl text-white uppercase">Month Year</span>
+                    <button onclick="changeMonth(1)" class="text-white hover:text-hyper-green transition-colors">&gt;</button>
+                </div>
+
+                <div class="grid grid-cols-7 gap-2 text-center font-mono text-xs text-gray-500 mb-2">
+                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-2">
+                    </div>
+            </div>
+
+            <div id="step-time" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-full bg-black">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest">Step 02 // Select Time</h4>
+                    <button onclick="goToStep('date')" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-widest">Go_Back</button>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-4" id="time-grid">
+                    </div>
+            </div>
+
+            <div id="step-form" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-full bg-black">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest">Step 03 // Mission Intel</h4>
+                    <button onclick="goToStep('time')" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-widest">Go_Back</button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Operative_Name</label>
+                        <input type="text" id="input-name" class="w-full bg-transparent border-b border-white/20 text-white font-display text-xl py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Enter Name">
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Comms_Email</label>
+                        <input type="email" id="input-email" class="w-full bg-transparent border-b border-white/20 text-white font-display text-xl py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Enter Email">
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Objective_Brief</label>
+                        <textarea id="input-brief" rows="2" class="w-full bg-transparent border-b border-white/20 text-white font-mono text-sm py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Project details..."></textarea>
+                    </div>
+
+                    <button onclick="finalizeBooking()" class="w-full py-4 bg-white text-black font-display text-xl uppercase tracking-widest hover:bg-hyper-green transition-colors mt-4">
+                        [ Confirm Uplink ]
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // SCHEDULER LOGIC
+    const schedulerOverlay = document.getElementById('scheduler-overlay');
+    const steps = {
+        date: document.getElementById('step-date'),
+        time: document.getElementById('step-time'),
+        form: document.getElementById('step-form')
+    };
+    const summaries = {
+        date: document.getElementById('summary-date'),
+        dateGroup: document.getElementById('summary-date-group'),
+        time: document.getElementById('summary-time'),
+        timeGroup: document.getElementById('summary-time-group')
+    };
+
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    // Open/Close Modal
+    function openScheduler() {
+        schedulerOverlay.classList.remove('hidden');
+        // Small delay for fade-in
+        setTimeout(() => schedulerOverlay.classList.remove('opacity-0'), 10);
+        renderCalendar();
+        goToStep('date');
+    }
+
+    function closeScheduler() {
+        schedulerOverlay.classList.add('opacity-0');
+        setTimeout(() => schedulerOverlay.classList.add('hidden'), 300);
+    }
+
+    // Navigation
+    function goToStep(stepName) {
+        // Reset Transforms
+        steps.date.style.transform = 'translateX(-100%)';
+        steps.time.style.transform = 'translateX(100%)';
+        steps.form.style.transform = 'translateX(100%)';
+
+        if (stepName === 'date') {
+            steps.date.style.transform = 'translateX(0)';
+            summaries.dateGroup.classList.add('opacity-50');
+            summaries.dateGroup.classList.remove('text-hyper-green');
+        } 
+        else if (stepName === 'time') {
+            steps.time.style.transform = 'translateX(0)';
+            steps.date.style.transform = 'translateX(-100%)';
+            summaries.dateGroup.classList.remove('opacity-50');
+            summaries.dateGroup.classList.add('text-hyper-green');
+            renderTimeSlots();
+        } 
+        else if (stepName === 'form') {
+            steps.form.style.transform = 'translateX(0)';
+            steps.time.style.transform = 'translateX(-100%)';
+            steps.date.style.transform = 'translateX(-100%)';
+            summaries.timeGroup.classList.remove('opacity-50');
+            summaries.timeGroup.classList.add('text-hyper-green');
+        }
+    }
+
+    // CALENDAR GENERATOR
+    const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+
+    function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        document.getElementById('calendar-month-year').innerText = `${monthNames[month]} ${year}`;
+        
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        // Empty slots for days before start of month
+        for (let i = 0; i < firstDay; i++) {
+            grid.innerHTML += `<div></div>`;
+        }
+
+        // Days
+        for (let i = 1; i <= daysInMonth; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = i;
+            btn.className = "h-8 w-8 rounded-full font-mono text-sm hover:bg-white/10 hover:text-white transition-colors text-gray-400";
+            
+            // Check if selected
+            if (selectedDate && selectedDate.getDate() === i && selectedDate.getMonth() === month) {
+                btn.className = "h-8 w-8 rounded-full font-mono text-sm bg-hyper-green text-black font-bold shadow-[0_0_10px_#CCFF00]";
+            }
+
+            btn.onclick = () => selectDate(i);
+            grid.appendChild(btn);
+        }
+    }
+
+    function changeMonth(dir) {
+        currentDate.setMonth(currentDate.getMonth() + dir);
+        renderCalendar();
+    }
+
+    function selectDate(day) {
+        selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+        summaries.date.innerText = selectedDate.toLocaleDateString();
+        renderCalendar(); // Re-render to show selection
+        goToStep('time');
+    }
+
+    // TIME SLOTS GENERATOR
+    function renderTimeSlots() {
+        const grid = document.getElementById('time-grid');
+        grid.innerHTML = '';
+        const times = ["10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
+        
+        times.forEach(time => {
+            const btn = document.createElement('button');
+            btn.innerText = time;
+            btn.className = "py-3 border border-white/20 font-mono text-xs text-white hover:border-hyper-green hover:text-hyper-green hover:bg-hyper-green/10 transition-all";
+            btn.onclick = () => selectTime(time);
+            grid.appendChild(btn);
+        });
+    }
+
+    function selectTime(time) {
+        selectedTime = time;
+        summaries.time.innerText = time;
+        goToStep('form');
+    }
+
+    // SUBMIT (MAILTO)
+    function finalizeBooking() {
+        const name = document.getElementById('input-name').value;
+        const email = document.getElementById('input-email').value;
+        const brief = document.getElementById('input-brief').value;
+
+        if(!name || !email) {
+            alert("ERROR: Missing Required Intel");
+            return;
+        }
+
+        const subject = `Uplink Request: ${selectedDate.toLocaleDateString()} @ ${selectedTime}`;
+        const body = `OPERATIVE: ${name}%0D%0ACOMMS: ${email}%0D%0ADATE: ${selectedDate.toLocaleDateString()}%0D%0ATIME: ${selectedTime}%0D%0A%0D%0AMISSION BRIEF:%0D%0A${brief}`;
+
+        // Simulate Processing
+        const btn = document.querySelector('#step-form button');
+        btn.innerText = "TRANSMITTING...";
+        btn.classList.add('bg-hyper-green');
+        
+        setTimeout(() => {
+            window.location.href = `mailto:prince@elevatedpixels.com?subject=${subject}&body=${body}`;
+            closeScheduler();
+            btn.innerText = "[ Confirm Uplink ]";
+            btn.classList.remove('bg-hyper-green');
+        }, 1000);
+    }
+</script>
+
 </body>
 </html>

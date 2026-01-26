@@ -344,7 +344,7 @@
                 <a href="about.html" class="text-white hover:text-hyper-green transition-colors">About</a>
                 <a href="strategy.html" class="text-white hover:text-hyper-green transition-colors">Strategy</a>
                 <a href="work.html" class="text-white hover:text-hyper-green transition-colors">Work</a>
-                <a href="#footer" onclick="toggleMobileMenu(false)" class="text-white hover:text-hyper-green transition-colors">Contact</a>
+                <a href="#contact" onclick="toggleMobileMenu(false)" class="text-white hover:text-hyper-green transition-colors">Contact</a>
             </nav>
 
             <div class="mt-auto">
@@ -357,21 +357,16 @@
 
     <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
         <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
-            
-            <a href="index.html" class="text-xl font-display tracking-tightest uppercase">
-                Elevated<span class="text-hyper-green">.</span>Pixels
+            <a href="index.html" class="block">
+                <img src="logo.png" alt="ElevatedPixels" class="h-12 w-auto brightness-0 invert hover:opacity-80 transition-opacity duration-300">
             </a>
-            
             <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
                 <a href="about.html" class="hover:text-white hover:text-hyper-green transition-colors">About</a>
                 <a href="strategy.html" class="hover:text-white hover:text-hyper-green transition-colors">Strategy</a>
                 <a href="work.html" class="hover:text-white hover:text-hyper-green transition-colors">Work</a>
-                <a href="#footer" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
+                <a href="index.html#contact" class="hover:text-white hover:text-hyper-green transition-colors">Contact</a>
             </div>
-
-            <a data-modal="schedule" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 cursor-pointer">
-                Start Project
-            </a>
+            <button onclick="openScheduler()" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">Start Project</button>
 
             <!-- Hamburger Button -->
             <button onclick="toggleMobileMenu(true)" class="md:hidden text-white hover:text-hyper-green transition-colors">
@@ -578,7 +573,7 @@
         </div>
     </section>
 
-    <section class="bg-carbon border-b border-white/10 relative z-10">
+    <section id="contact" class="bg-carbon border-b border-white/10 relative z-10">
         
         <div class="px-6 md:px-12 py-20 border-b border-white/10 flex flex-col md:flex-row justify-between items-end gap-8">
             <div>
@@ -597,7 +592,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3">
 
-            <div class="group relative border-b md:border-b-0 md:border-r border-white/10 h-[750px] overflow-hidden">
+            <a href="contact.html#jeet" class="group relative border-b md:border-b-0 md:border-r border-white/10 h-[750px] overflow-hidden block cursor-pointer">
                 <img src="./IMG_20260121_230524.jpg" 
                      alt="Jeet Pandya - Co-Founder and Tech Lead at ElevatedPixels, expert in web development and software engineering" 
                      loading="lazy"
@@ -615,8 +610,11 @@
                     </div>
                     <h3 class="font-display text-5xl text-white uppercase mb-2">Jeet <br>Pandya</h3>
                     <p class="font-mono text-xs text-gray-300 uppercase tracking-widest pl-1">Co-Founder & Tech Lead</p>
+                    <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="border-b border-hyper-green text-hyper-green font-mono text-xs pb-1 uppercase tracking-widest">View_Dossier →</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <a href="mailto:careers@elevatedpixels.com" class="group relative border-b md:border-b-0 md:border-r border-white/10 h-[750px] bg-black flex flex-col items-center justify-center cursor-pointer overflow-hidden">
                 
@@ -658,7 +656,7 @@
 
             </a>
 
-            <div class="group relative h-[750px] overflow-hidden">
+            <a href="contact.html#prince" class="group relative h-[750px] overflow-hidden block cursor-pointer">
                 <img src="./IMG_4917.jpg.jpeg" 
                      alt="Prince Patel - Co-Founder and Design Lead at ElevatedPixels, expert in UI/UX design and visual synthesis" 
                      loading="lazy"
@@ -676,8 +674,11 @@
                     </div>
                     <h3 class="font-display text-5xl text-white uppercase mb-2">Prince <br>Patel</h3>
                     <p class="font-mono text-xs text-gray-300 uppercase tracking-widest pl-1">Co-Founder & Design Lead</p>
+                    <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="border-b border-hyper-green text-hyper-green font-mono text-xs pb-1 uppercase tracking-widest">View_Dossier →</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
         </div>
     </section>
@@ -1129,6 +1130,253 @@
             renderer.render(scene, camera);
         }
     })();
+</script>
+
+<!-- TACTICAL UPLINK SCHEDULER MODAL -->
+<div id="scheduler-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-4xl bg-[#0A0A0A] border border-white/20 shadow-[0_0_50px_rgba(204,255,0,0.1)] relative flex flex-col md:flex-row overflow-hidden h-[600px]">
+        
+        <div class="w-full md:w-1/3 bg-white/5 border-b md:border-b-0 md:border-r border-white/10 p-8 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-2 h-2 bg-hyper-green animate-pulse rounded-full"></div>
+                    <span class="font-mono text-xs text-hyper-green uppercase tracking-widest">System_Uplink</span>
+                </div>
+                <h3 class="font-display text-3xl text-white uppercase leading-none mb-2">Schedule <br> Briefing</h3>
+                <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Secure Channel Encrypted</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="opacity-50 transition-opacity duration-300" id="summary-date-group">
+                    <span class="block font-mono text-[10px] text-gray-500 uppercase mb-1">Target_Date</span>
+                    <span id="summary-date" class="font-display text-2xl text-white">-- / --</span>
+                </div>
+                <div class="opacity-50 transition-opacity duration-300" id="summary-time-group">
+                    <span class="block font-mono text-[10px] text-gray-500 uppercase mb-1">Time_Window</span>
+                    <span id="summary-time" class="font-display text-2xl text-white">--:--</span>
+                </div>
+            </div>
+
+            <button onclick="closeScheduler()" class="mt-auto text-left font-mono text-xs text-red-500 hover:text-white uppercase tracking-widest transition-colors">
+                [ Abort_Mission ]
+            </button>
+        </div>
+
+        <div class="w-full md:w-2/3 p-8 relative overflow-hidden bg-black">
+            
+            <div id="step-date" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-0">
+                <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest mb-6">Step 01 // Select Date</h4>
+                
+                <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                    <button onclick="changeMonth(-1)" class="text-white hover:text-hyper-green transition-colors">&lt;</button>
+                    <span id="calendar-month-year" class="font-display text-xl text-white uppercase">Month Year</span>
+                    <button onclick="changeMonth(1)" class="text-white hover:text-hyper-green transition-colors">&gt;</button>
+                </div>
+
+                <div class="grid grid-cols-7 gap-2 text-center font-mono text-xs text-gray-500 mb-2">
+                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-2">
+                    </div>
+            </div>
+
+            <div id="step-time" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-full bg-black">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest">Step 02 // Select Time</h4>
+                    <button onclick="goToStep('date')" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-widest">Go_Back</button>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-4" id="time-grid">
+                    </div>
+            </div>
+
+            <div id="step-form" class="absolute inset-0 p-8 transition-transform duration-500 translate-x-full bg-black">
+                <div class="flex justify-between items-center mb-6">
+                    <h4 class="font-mono text-xs text-gray-400 uppercase tracking-widest">Step 03 // Mission Intel</h4>
+                    <button onclick="goToStep('time')" class="text-[10px] text-gray-500 hover:text-white uppercase tracking-widest">Go_Back</button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Operative_Name</label>
+                        <input type="text" id="input-name" class="w-full bg-transparent border-b border-white/20 text-white font-display text-xl py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Enter Name">
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Comms_Email</label>
+                        <input type="email" id="input-email" class="w-full bg-transparent border-b border-white/20 text-white font-display text-xl py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Enter Email">
+                    </div>
+                    <div class="group">
+                        <label class="block font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-2">Objective_Brief</label>
+                        <textarea id="input-brief" rows="2" class="w-full bg-transparent border-b border-white/20 text-white font-mono text-sm py-2 focus:border-hyper-green focus:outline-none transition-colors" placeholder="Project details..."></textarea>
+                    </div>
+
+                    <button onclick="finalizeBooking()" class="w-full py-4 bg-white text-black font-display text-xl uppercase tracking-widest hover:bg-hyper-green transition-colors mt-4">
+                        [ Confirm Uplink ]
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // SCHEDULER LOGIC
+    const schedulerOverlay = document.getElementById('scheduler-overlay');
+    const steps = {
+        date: document.getElementById('step-date'),
+        time: document.getElementById('step-time'),
+        form: document.getElementById('step-form')
+    };
+    const summaries = {
+        date: document.getElementById('summary-date'),
+        dateGroup: document.getElementById('summary-date-group'),
+        time: document.getElementById('summary-time'),
+        timeGroup: document.getElementById('summary-time-group')
+    };
+
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    // Open/Close Modal
+    function openScheduler() {
+        schedulerOverlay.classList.remove('hidden');
+        // Small delay for fade-in
+        setTimeout(() => schedulerOverlay.classList.remove('opacity-0'), 10);
+        renderCalendar();
+        goToStep('date');
+    }
+
+    function closeScheduler() {
+        schedulerOverlay.classList.add('opacity-0');
+        setTimeout(() => schedulerOverlay.classList.add('hidden'), 300);
+    }
+
+    // Navigation
+    function goToStep(stepName) {
+        // Reset Transforms
+        steps.date.style.transform = 'translateX(-100%)';
+        steps.time.style.transform = 'translateX(100%)';
+        steps.form.style.transform = 'translateX(100%)';
+
+        if (stepName === 'date') {
+            steps.date.style.transform = 'translateX(0)';
+            summaries.dateGroup.classList.add('opacity-50');
+            summaries.dateGroup.classList.remove('text-hyper-green');
+        } 
+        else if (stepName === 'time') {
+            steps.time.style.transform = 'translateX(0)';
+            steps.date.style.transform = 'translateX(-100%)';
+            summaries.dateGroup.classList.remove('opacity-50');
+            summaries.dateGroup.classList.add('text-hyper-green');
+            renderTimeSlots();
+        } 
+        else if (stepName === 'form') {
+            steps.form.style.transform = 'translateX(0)';
+            steps.time.style.transform = 'translateX(-100%)';
+            steps.date.style.transform = 'translateX(-100%)';
+            summaries.timeGroup.classList.remove('opacity-50');
+            summaries.timeGroup.classList.add('text-hyper-green');
+        }
+    }
+
+    // CALENDAR GENERATOR
+    const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+
+    function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        document.getElementById('calendar-month-year').innerText = `${monthNames[month]} ${year}`;
+        
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        // Empty slots for days before start of month
+        for (let i = 0; i < firstDay; i++) {
+            grid.innerHTML += `<div></div>`;
+        }
+
+        // Days
+        for (let i = 1; i <= daysInMonth; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = i;
+            btn.className = "h-8 w-8 rounded-full font-mono text-sm hover:bg-white/10 hover:text-white transition-colors text-gray-400";
+            
+            // Check if selected
+            if (selectedDate && selectedDate.getDate() === i && selectedDate.getMonth() === month) {
+                btn.className = "h-8 w-8 rounded-full font-mono text-sm bg-hyper-green text-black font-bold shadow-[0_0_10px_#CCFF00]";
+            }
+
+            btn.onclick = () => selectDate(i);
+            grid.appendChild(btn);
+        }
+    }
+
+    function changeMonth(dir) {
+        currentDate.setMonth(currentDate.getMonth() + dir);
+        renderCalendar();
+    }
+
+    function selectDate(day) {
+        selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+        summaries.date.innerText = selectedDate.toLocaleDateString();
+        renderCalendar(); // Re-render to show selection
+        goToStep('time');
+    }
+
+    // TIME SLOTS GENERATOR
+    function renderTimeSlots() {
+        const grid = document.getElementById('time-grid');
+        grid.innerHTML = '';
+        const times = ["10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "03:00 PM", "04:00 PM"];
+        
+        times.forEach(time => {
+            const btn = document.createElement('button');
+            btn.innerText = time;
+            btn.className = "py-3 border border-white/20 font-mono text-xs text-white hover:border-hyper-green hover:text-hyper-green hover:bg-hyper-green/10 transition-all";
+            btn.onclick = () => selectTime(time);
+            grid.appendChild(btn);
+        });
+    }
+
+    function selectTime(time) {
+        selectedTime = time;
+        summaries.time.innerText = time;
+        goToStep('form');
+    }
+
+    // SUBMIT (MAILTO)
+    function finalizeBooking() {
+        const name = document.getElementById('input-name').value;
+        const email = document.getElementById('input-email').value;
+        const brief = document.getElementById('input-brief').value;
+
+        if(!name || !email) {
+            alert("ERROR: Missing Required Intel");
+            return;
+        }
+
+        const subject = `Uplink Request: ${selectedDate.toLocaleDateString()} @ ${selectedTime}`;
+        const body = `OPERATIVE: ${name}%0D%0ACOMMS: ${email}%0D%0ADATE: ${selectedDate.toLocaleDateString()}%0D%0ATIME: ${selectedTime}%0D%0A%0D%0AMISSION BRIEF:%0D%0A${brief}`;
+
+        // Simulate Processing
+        const btn = document.querySelector('#step-form button');
+        btn.innerText = "TRANSMITTING...";
+        btn.classList.add('bg-hyper-green');
+        
+        setTimeout(() => {
+            window.location.href = `mailto:prince@elevatedpixels.com?subject=${subject}&body=${body}`;
+            closeScheduler();
+            btn.innerText = "[ Confirm Uplink ]";
+            btn.classList.remove('bg-hyper-green');
+        }, 1000);
+    }
 </script>
 
 </body>
