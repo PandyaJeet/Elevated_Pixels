@@ -167,6 +167,7 @@
     const callRequestsCollection = collection(db, "callRequests");
     const buildRequestsCollection = collection(db, "buildRequests");
     const emailCapturesCollection = collection(db, "emailCaptures");
+    const briefingRequestsCollection = collection(db, "briefingRequests");
 
     async function saveLead(payload) {
         return addDoc(leadsCollection, {
@@ -196,8 +197,15 @@
             });
         }
 
+        async function saveBriefing(payload) {
+            return addDoc(briefingRequestsCollection, {
+                ...payload,
+                createdAt: serverTimestamp(),
+            });
+        }
+
     // Make available to the rest of the page scripts
-        window.EP_FIRESTORE = { saveLead, saveCall, saveBuild, saveEmail };
+        window.EP_FIRESTORE = { saveLead, saveCall, saveBuild, saveEmail, saveBriefing };
 </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1351,31 +1359,71 @@
         goToStep('form');
     }
 
-    // SUBMIT (MAILTO)
-    function finalizeBooking() {
+    // SUBMIT (MAILTO + FIRESTORE)
+    async function finalizeBooking() {
         const name = document.getElementById('input-name').value;
         const email = document.getElementById('input-email').value;
         const brief = document.getElementById('input-brief').value;
 
         if(!name || !email) {
-            alert("ERROR: Missing Required Intel");
+            showSystemToast("ERROR: Missing Required Intel", true);
+            return;
+        }
+
+        if(!selectedDate || !selectedTime) {
+            showSystemToast("ERROR: Select Date & Time", true);
+            return;
+        }
+
+        const saveBriefing = window.EP_FIRESTORE?.saveBriefing;
+        if (!saveBriefing) {
+            showSystemToast("DATA LINK OFFLINE", true);
             return;
         }
 
         const subject = `Uplink Request: ${selectedDate.toLocaleDateString()} @ ${selectedTime}`;
         const body = `OPERATIVE: ${name}%0D%0ACOMMS: ${email}%0D%0ADATE: ${selectedDate.toLocaleDateString()}%0D%0ATIME: ${selectedTime}%0D%0A%0D%0AMISSION BRIEF:%0D%0A${brief}`;
 
-        // Simulate Processing
+        // Show Processing State
         const btn = document.querySelector('#step-form button');
         btn.innerText = "TRANSMITTING...";
         btn.classList.add('bg-hyper-green');
+        btn.disabled = true;
         
-        setTimeout(() => {
-            window.location.href = `mailto:prince@elevatedpixels.com?subject=${subject}&body=${body}`;
+        try {
+            // Save to Firestore
+            await saveBriefing({
+                name,
+                email,
+                date: selectedDate.toISOString(),
+                time: selectedTime,
+                brief,
+                dateFormatted: selectedDate.toLocaleDateString()
+            });
+
+            // Reset form fields
+            document.getElementById('input-name').value = '';
+            document.getElementById('input-email').value = '';
+            document.getElementById('input-brief').value = '';
+            selectedDate = null;
+            selectedTime = null;
+            summaries.date.innerText = '-- / --';
+            summaries.time.innerText = '--:--';
+
             closeScheduler();
+            showSystemToast("BRIEFING REQUEST STORED");
+
+            // Optional: Also open mailto
+            window.location.href = `mailto:prince@elevatedpixels.com?subject=${subject}&body=${body}`;
+
+        } catch (err) {
+            console.error('Briefing request failed', err);
+            showSystemToast("STORE FAILED. RETRY.", true);
+        } finally {
             btn.innerText = "[ Confirm Uplink ]";
             btn.classList.remove('bg-hyper-green');
-        }, 1000);
+            btn.disabled = false;
+        }
     }
 </script>
 
