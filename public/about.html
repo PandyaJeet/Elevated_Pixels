@@ -206,7 +206,8 @@
                         <span class="text-white font-bold">ElevatedPixels</span> didn't start as an agency. It started as a debate.
                     </p>
                     <p>
-                        On one side, there was <span class="text-hyper-green">Prince Patel</span>, obsessed with visual synthesis, typography, and the psychology of user flow. On the other, <span class="text-hyper-green">Jeet Pandya</span>, fixated on clean architecture, database scalability, and load velocity.
+                        On one side, there was <span class="text-hyper-green">
+                             Patel</span>, obsessed with visual synthesis, typography, and the psychology of user flow. On the other, <span class="text-hyper-green">Jeet Pandya</span>, fixated on clean architecture, database scalability, and load velocity.
                     </p>
                     <p>
                         Designers usually ignore code constraints. Developers usually ignore pixel perfection. We realized that by merging these two repositories, we could build something rare: <span class="text-white">A digital product that looks like art but performs like a machine.</span>
@@ -224,23 +225,376 @@
                     </div>
                 </div>
             </div>
+            <div class="flex justify-center md:justify-end mt-12 md:mt-0">
+                <div class="relative w-[500px] h-[500px] bg-black/50 border border-white/10 flex flex-col items-center justify-center overflow-hidden group shadow-[0_0_50px_rgba(0,0,0,0.5)]" id="game-wrapper">
+                    
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%] pointer-events-none z-20"></div>
 
-            <div class="relative h-[400px] border border-white/10 bg-white/5 p-8 flex items-center justify-center overflow-hidden group">
-                <div class="absolute top-0 left-1/4 w-[1px] h-1/2 bg-white/20 group-hover:h-[55%] transition-all duration-700"></div>
-                <div class="absolute bottom-0 right-1/4 w-[1px] h-1/2 bg-hyper-green/50 group-hover:h-[55%] transition-all duration-700"></div>
-                
-                <div class="w-32 h-32 border border-white/20 rounded-full flex items-center justify-center relative z-10 bg-carbon">
-                    <div class="w-24 h-24 bg-hyper-green/10 rounded-full animate-pulse"></div>
-                    <span class="absolute font-display text-2xl">EP</span>
+                    <div class="relative w-[380px] h-[380px] flex items-center justify-center">
+                        <div class="absolute inset-0 bg-hyper-green/5 rounded-full blur-[60px] pointer-events-none"></div>
+                        <div class="absolute inset-0 border border-white/10 rounded-full"></div>
+                        <div class="absolute inset-4 border border-white/5 border-dashed rounded-full animate-[spin_60s_linear_infinite]"></div>
+                        
+                        <canvas id="orbit-canvas" class="relative z-20 rounded-full cursor-none"></canvas>
+                    </div>
+
+                    <div id="hud" class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 z-30">
+                        
+                        <div class="absolute top-6 left-6 text-left">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">System_Record</span>
+                            <span id="hud-high-score" class="block font-display text-xl text-hyper-green">00</span>
+                        </div>
+
+                        <div class="absolute top-6 right-6 text-right">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">Threats_Blocked</span>
+                            <span id="score-el" class="block font-display text-xl text-white">00</span>
+                        </div>
+
+                        <div class="absolute bottom-6 left-6 text-left">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase mb-2">Core_Integrity</span>
+                            <div class="flex gap-1" id="health-bars">
+                                </div>
+                        </div>
+
+                        <div class="absolute bottom-6 right-6 text-right">
+                            <span class="block font-mono text-[9px] text-gray-600 uppercase">Status</span>
+                            <span class="block font-mono text-xs text-hyper-green animate-pulse">DEFENSE_ACTIVE</span>
+                        </div>
+                    </div>
+
+                    <div id="start-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300">
+                        <div class="text-hyper-green text-4xl mb-4 animate-pulse"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="font-display text-2xl text-white uppercase tracking-widest mb-2">Initialize Shield</h3>
+                        <p class="font-mono text-[10px] text-gray-400 uppercase tracking-widest mb-6">Mission: Protect The Core</p>
+                        <div class="px-4 py-2 border border-white/20 text-xs font-mono text-white uppercase hover:bg-white hover:text-black transition-colors cursor-pointer">
+                            [ Click to Engage ]
+                        </div>
+                    </div>
+
+                    <div id="gameover-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md z-50 hidden">
+                        <div class="text-red-500 text-3xl mb-2"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3 class="font-display text-xl text-white uppercase tracking-widest mb-1">System Failure</h3>
+                        <p class="font-mono text-[10px] text-red-500 uppercase tracking-widest mb-6">Integrity Critical</p>
+                        
+                        <div class="w-48 border border-white/20 bg-white/5 p-4 mb-6 text-center">
+                            <span class="block font-mono text-[10px] text-gray-400 uppercase">Final_Score</span>
+                            <span id="final-score" class="font-display text-3xl text-white block my-1">00</span>
+                        </div>
+
+                        <button id="retry-btn" class="px-6 py-2 bg-hyper-green text-black font-display uppercase tracking-widest hover:bg-white transition-colors text-sm">
+                            Reboot System
+                        </button>
+                    </div>
+
                 </div>
-                
-                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                    <line x1="25%" y1="50%" x2="50%" y2="50%" stroke="white" stroke-width="1" />
-                    <line x1="75%" y1="50%" x2="50%" y2="50%" stroke="#CCFF00" stroke-width="1" />
-                </svg>
             </div>
 
         </div>
+    </section>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('orbit-canvas');
+            const wrapper = document.getElementById('game-wrapper');
+            const startOverlay = document.getElementById('start-overlay');
+            const gameOverOverlay = document.getElementById('gameover-overlay');
+            const hud = document.getElementById('hud');
+            const scoreEl = document.getElementById('score-el');
+            const hudHighScoreEl = document.getElementById('hud-high-score');
+            const finalScoreEl = document.getElementById('final-score');
+            const retryBtn = document.getElementById('retry-btn');
+            const healthBarsContainer = document.getElementById('health-bars');
+
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let width, height, centerX, centerY;
+            
+            // COLORS
+            const COLOR_ACCENT = "#CCFF00"; 
+            const COLOR_CORE_SAFE = "#FFFFFF";
+            const COLOR_CORE_WARN = "#FFCC00";
+            const COLOR_CORE_CRIT = "#FF0000";
+            const COLOR_THREAT = "rgba(255, 255, 255, 0.9)";
+            const COLOR_TRAJECTORY = "rgba(255, 0, 0, 0.4)"; // Red Trajectory
+            
+            // STATE
+            let isPlaying = false;
+            let isGameOver = false;
+            let score = 0;
+            let lives = 3;
+            let highScore = localStorage.getItem('ep_core_highscore') || 0;
+            let angle = 0; 
+            let shieldRadius = 140; 
+            let shieldArc = Math.PI / 2; // 90 degrees
+            
+            // ENTITIES
+            let threats = [];
+            let particles = [];
+            
+            // LOGIC
+            let frames = 0;
+            let spawnRate = 100;
+            let shake = 0;
+
+            // Load High Score Immediately
+            hudHighScoreEl.innerText = highScore.toString().padStart(2, '0');
+
+            function resize() {
+                const size = 380; 
+                canvas.width = size;
+                canvas.height = size;
+                width = size;
+                height = size;
+                centerX = width / 2;
+                centerY = height / 2;
+                shieldRadius = (width / 2) - 30; 
+            }
+
+            function updateHealthUI() {
+                healthBarsContainer.innerHTML = '';
+                for(let i=0; i<3; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'w-1 h-6 transition-colors duration-300 ';
+                    if (i < lives) {
+                        if (lives === 3) bar.className += 'bg-hyper-green shadow-[0_0_8px_#CCFF00]';
+                        else if (lives === 2) bar.className += 'bg-yellow-400 shadow-[0_0_8px_orange]';
+                        else bar.className += 'bg-red-500 shadow-[0_0_8px_red] animate-pulse';
+                    } else {
+                        bar.className += 'bg-gray-800'; 
+                    }
+                    healthBarsContainer.appendChild(bar);
+                }
+            }
+
+            function startGame() {
+                isPlaying = true;
+                isGameOver = false;
+                score = 0;
+                lives = 3;
+                scoreEl.innerText = "00";
+                threats = [];
+                particles = [];
+                frames = 0;
+                spawnRate = 100;
+
+                updateHealthUI();
+                startOverlay.classList.add('opacity-0', 'pointer-events-none');
+                gameOverOverlay.classList.add('hidden');
+                hud.classList.remove('opacity-0');
+            }
+
+            function takeDamage() {
+                lives--;
+                shake = 10; 
+                updateHealthUI();
+                createExplosion(centerX, centerY, "#FF0000");
+
+                if (lives <= 0) {
+                    triggerGameOver();
+                }
+            }
+
+            function triggerGameOver() {
+                isPlaying = false;
+                isGameOver = true;
+                
+                // UNIVERSAL HIGH SCORE (Simulated via LocalStorage)
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('ep_core_highscore', highScore);
+                    hudHighScoreEl.innerText = highScore.toString().padStart(2, '0');
+                }
+
+                finalScoreEl.innerText = score.toString().padStart(2, '0');
+                gameOverOverlay.classList.remove('hidden');
+                hud.classList.add('opacity-0');
+            }
+
+            function spawnThreat() {
+                const spawnAngle = Math.random() * Math.PI * 2;
+                const spawnDist = (width / 2) + 40; 
+                
+                // SPEED SCALING: Starts at 1.5, increases by 0.1 every point
+                // Cap speed at 5.0 to prevent impossible glitches
+                let dynamicSpeed = Math.min(5.0, 1.5 + (score * 0.1));
+
+                threats.push({
+                    x: centerX + Math.cos(spawnAngle) * spawnDist,
+                    y: centerY + Math.sin(spawnAngle) * spawnDist,
+                    speed: dynamicSpeed, 
+                    angle: spawnAngle + Math.PI 
+                });
+            }
+
+            function createExplosion(x, y, color) {
+                for (let i = 0; i < 8; i++) {
+                    particles.push({
+                        x: x,
+                        y: y,
+                        vx: (Math.random() - 0.5) * 4,
+                        vy: (Math.random() - 0.5) * 4,
+                        life: 1.0,
+                        color: color
+                    });
+                }
+            }
+
+            function update() {
+                if (!isPlaying || isGameOver) return;
+                frames++;
+
+                // SPAWN RATE: Spawns get frequent as score goes up
+                let currentRate = Math.max(25, spawnRate - (score * 2)); 
+                if (frames >= currentRate) {
+                    spawnThreat();
+                    frames = 0;
+                }
+
+                // Shake Decay
+                if (shake > 0) shake *= 0.9;
+                if (shake < 0.5) shake = 0;
+
+                // THREAT LOGIC
+                for (let i = threats.length - 1; i >= 0; i--) {
+                    let t = threats[i];
+                    
+                    const dx = centerX - t.x;
+                    const dy = centerY - t.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    t.x += (dx / dist) * t.speed;
+                    t.y += (dy / dist) * t.speed;
+
+                    const distFromCenter = Math.sqrt(Math.pow(t.x - centerX, 2) + Math.pow(t.y - centerY, 2));
+                    
+                    // SHIELD HIT
+                    if (distFromCenter < shieldRadius + 15 && distFromCenter > shieldRadius - 15) {
+                        let threatAngle = Math.atan2(t.y - centerY, t.x - centerX);
+                        let diff = threatAngle - angle;
+                        while (diff < -Math.PI) diff += Math.PI * 2;
+                        while (diff > Math.PI) diff -= Math.PI * 2;
+
+                        if (Math.abs(diff) < shieldArc / 2) {
+                            createExplosion(t.x, t.y, COLOR_ACCENT);
+                            threats.splice(i, 1);
+                            score++;
+                            scoreEl.innerText = score.toString().padStart(2, '0');
+                            continue;
+                        }
+                    }
+
+                    // CORE HIT
+                    if (distFromCenter < 10) {
+                        takeDamage();
+                        threats.splice(i, 1);
+                    }
+                }
+
+                // PARTICLES
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    let p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.life -= 0.05;
+                    if (p.life <= 0) particles.splice(i, 1);
+                }
+            }
+
+            function draw() {
+                ctx.save();
+                if (shake > 0) {
+                    ctx.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake);
+                }
+
+                ctx.clearRect(0, 0, width, height);
+
+                // 1. Radar Grid
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, shieldRadius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // 2. The Core
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 12, 0, Math.PI * 2);
+                if (lives === 3) ctx.fillStyle = COLOR_CORE_SAFE;
+                else if (lives === 2) ctx.fillStyle = COLOR_CORE_WARN;
+                else ctx.fillStyle = COLOR_CORE_CRIT;
+                ctx.shadowColor = ctx.fillStyle;
+                ctx.shadowBlur = 15;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // 3. User Shield
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, shieldRadius, angle - shieldArc / 2, angle + shieldArc / 2);
+                ctx.strokeStyle = COLOR_ACCENT;
+                ctx.lineWidth = 4;
+                ctx.lineCap = "round"; 
+                ctx.shadowColor = COLOR_ACCENT;
+                ctx.shadowBlur = 10;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // 4. Threats + Trajectories
+                threats.forEach(t => {
+                    // Draw Trajectory (Red Line)
+                    ctx.beginPath();
+                    ctx.moveTo(t.x, t.y);
+                    ctx.lineTo(centerX, centerY);
+                    ctx.strokeStyle = COLOR_TRAJECTORY;
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([4, 4]); // Dashed Line
+                    ctx.stroke();
+                    ctx.setLineDash([]); // Reset
+
+                    // Draw Threat
+                    ctx.beginPath();
+                    ctx.fillStyle = COLOR_THREAT;
+                    ctx.fillRect(t.x - 3, t.y - 3, 6, 6);
+                });
+
+                // 5. Particles
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.life;
+                    ctx.fillRect(p.x, p.y, 4, 4);
+                    ctx.globalAlpha = 1.0;
+                });
+
+                ctx.restore();
+                update();
+                requestAnimationFrame(draw);
+            }
+
+            // CONTROLS
+            wrapper.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                angle = Math.atan2(mouseY - (rect.height/2), mouseX - (rect.width/2));
+            });
+
+            // Touch support for mobile play
+            wrapper.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const touchX = e.touches[0].clientX - rect.left;
+                const touchY = e.touches[0].clientY - rect.top;
+                angle = Math.atan2(touchY - (rect.height/2), touchX - (rect.width/2));
+            }, { passive: false });
+
+            startOverlay.addEventListener('click', startGame);
+            retryBtn.addEventListener('click', startGame);
+
+            window.addEventListener('resize', resize);
+            resize();
+            draw();
+
+        })();
+    </script>
     </section>
 
     <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm">
