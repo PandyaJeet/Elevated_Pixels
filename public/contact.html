@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevatedPixels | Contact Uplink</title>
+    <meta name="description" content="Connect with ElevatedPixels founders. Direct access to our command unit for project inquiries and collaborations.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'display': ['Antonio', 'sans-serif'], 'body': ['Inter', 'sans-serif'] },
+                    colors: { 'carbon': '#0A0A0A', 'hyper-green': '#CCFF00' },
+                    letterSpacing: { 'tightest': '-0.04em' }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { color-scheme: dark; }
+        html { scroll-behavior: smooth; }
+        
+        /* Dossier Card Styles */
+        .dossier-card {
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dossier-card:hover {
+            transform: translateY(-4px);
+        }
+        .dossier-card.active {
+            grid-column: 1 / -1;
+        }
+        
+        /* Scanline effect */
+        .scanline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(204, 255, 0, 0.03) 2px,
+                rgba(204, 255, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .dossier-card:hover .scanline::before,
+        .dossier-card.active .scanline::before {
+            opacity: 1;
+        }
+        
+        /* Typing animation */
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        
+        /* Glitch effect on hover */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch:hover {
+            animation: glitch 0.3s ease-in-out;
+        }
+        
+        /* Expand animation */
+        .dossier-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+            opacity: 0;
+        }
+        .dossier-card.active .dossier-details {
+            max-height: 800px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-carbon text-white font-body antialiased selection:bg-hyper-green selection:text-black">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 md:hidden">
+        <div id="mobile-menu-content" class="absolute right-0 top-0 h-full w-[80%] max-w-sm bg-carbon border-l border-white/10 transform translate-x-full transition-transform duration-300 flex flex-col p-8">
+            <div class="flex justify-end mb-12">
+                <button onclick="toggleMobileMenu(false)" class="text-gray-500 hover:text-hyper-green font-mono text-xl">[CLOSE]</button>
+            </div>
+            
+            <nav class="flex flex-col gap-8 text-2xl font-display uppercase tracking-tight">
+                <a href="index.html" class="text-white hover:text-hyper-green transition-colors">Home</a>
+                <a href="about.html" class="text-white hover:text-hyper-green transition-colors">About</a>
+                <a href="strategy.html" class="text-white hover:text-hyper-green transition-colors">Strategy</a>
+                <a href="work.html" class="text-white hover:text-hyper-green transition-colors">Work</a>
+                <a href="contact.html" class="text-hyper-green transition-colors">Contact</a>
+            </nav>
+
+            <div class="mt-auto">
+                <button onclick="toggleMobileMenu(false); scrollToFooter()" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors text-xs">
+                    [ Start Project ]
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="border-b border-white/10 fixed w-full top-0 z-50 backdrop-blur-md bg-carbon/80">
+        <div class="max-w-[1600px] mx-auto flex justify-between items-center h-20 px-6 md:px-12">
+            
+            <a href="index.html" class="text-xl font-display tracking-tightest uppercase">
+                Elevated<span class="text-hyper-green">.</span>Pixels
+            </a>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-400">
+                <a href="about.html" class="hover:text-hyper-green transition-colors">About</a>
+                <a href="strategy.html" class="hover:text-hyper-green transition-colors">Strategy</a>
+                <a href="work.html" class="hover:text-hyper-green transition-colors">Work</a>
+                <a href="contact.html" class="text-white border-b border-hyper-green pb-1">Contact</a>
+            </div>
+
+            <a href="index.html#contact" class="hidden md:block px-6 py-2 border border-white/20 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                Start Project
+            </a>
+
+            <!-- Hamburger Button -->
+            <button onclick="toggleMobileMenu(true)" class="md:hidden text-white hover:text-hyper-green transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-40 pb-16 px-6 md:px-12 border-b border-white/10 relative overflow-hidden">
+        <div class="absolute top-20 right-0 opacity-10 font-display text-[20rem] leading-none text-white select-none pointer-events-none">
+            004
+        </div>
+        
+        <div class="max-w-[1600px] mx-auto relative z-10">
+            <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Secure_Channel</span>
+            <h1 class="font-display text-[4rem] md:text-[7rem] leading-[0.9] uppercase mt-4 mb-6">
+                Establish <br> 
+                <span class="text-gray-500">Uplink.</span>
+            </h1>
+            <p class="text-gray-400 max-w-xl text-lg leading-relaxed border-l-2 border-hyper-green pl-6">
+                Direct access to the ElevatedPixels command unit. Select a founder dossier below to initiate secure communication protocols.
+            </p>
+        </div>
+    </header>
+
+    <!-- Founder Dossiers Section -->
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-[1600px] mx-auto">
+            
+            <!-- Section Header -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="text-xs font-mono text-hyper-green uppercase tracking-widest">/// Founder_Dossiers</span>
+                    <div class="flex-1 h-px bg-white/10"></div>
+                    <span class="text-xs font-mono text-gray-500">SELECT TO ACCESS</span>
+                </div>
+                <p class="text-gray-500 font-mono text-sm">Click on a profile card to access full contact dossier <span class="cursor-blink text-hyper-green">▌</span></p>
+            </div>
+
+            <!-- Dossier Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="dossier-grid">
+
+                <!-- Jeet Pandya Dossier -->
+                <div id="jeet" class="dossier-card group border border-white/10 bg-white/[0.02] hover:border-hyper-green/50 hover:bg-white/[0.04] transition-all duration-500 relative overflow-hidden" data-dossier="jeet" onclick="toggleDossier('jeet')">
+                    
+                    <!-- Corner Accents -->
+                    <div class="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/20 group-hover:border-hyper-green transition-colors"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/20 group-hover:border-hyper-green transition-colors"></div>
+                    
+                    <!-- Scanline Overlay -->
+                    <div class="scanline absolute inset-0"></div>
+
+                    <!-- Card Header (Always Visible) -->
+                    <div class="p-8 md:p-12 relative z-10">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 bg-hyper-green/10 border border-hyper-green/30 text-hyper-green text-[10px] font-mono uppercase tracking-widest">ID: EP-001</span>
+                                    <span class="w-2 h-2 bg-hyper-green rounded-full animate-pulse"></span>
+                                    <span class="text-[10px] font-mono text-hyper-green uppercase">Online</span>
+                                </div>
+                                <h2 class="font-display text-4xl md:text-5xl uppercase text-white mb-2 glitch">Jeet Pandya</h2>
+                                <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Co-Founder // Tech Lead</span>
+                            </div>
+                            
+                            <!-- Expand Indicator -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-10 h-10 border border-white/20 group-hover:border-hyper-green flex items-center justify-center transition-colors dossier-toggle">
+                                    <i class="fas fa-chevron-down text-gray-500 group-hover:text-hyper-green transition-all duration-300 dossier-arrow"></i>
+                                </div>
+                                <span class="text-[8px] font-mono text-gray-600 uppercase">Access</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-3 gap-4 py-4 border-t border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Specialization</span>
+                                <span class="text-sm text-white font-mono">Full-Stack Dev</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Experience</span>
+                                <span class="text-sm text-white font-mono">5+ Years</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Projects</span>
+                                <span class="text-sm text-white font-mono">50+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Dossier Details -->
+                    <div class="dossier-details">
+                        <div class="px-8 md:px-12 pb-12 relative z-10">
+                            
+                            <!-- Terminal Header -->
+                            <div class="bg-black/50 border border-white/10 p-4 mb-8">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                    <span class="ml-4 text-[10px] font-mono text-gray-500">DOSSIER://JEET_PANDYA.classified</span>
+                                </div>
+                                <div class="font-mono text-xs text-gray-400">
+                                    <span class="text-hyper-green">$</span> cat contact_protocols.txt
+                                </div>
+                            </div>
+
+                            <!-- Contact Details Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <a href="mailto:jeet@elevatedpixels.com" class="group/link block p-4 bg-white/[0.02] border border-white/10 hover:border-hyper-green hover:bg-white/[0.04] transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-hyper-green/10 border border-hyper-green/30 flex items-center justify-center">
+                                            <i class="fas fa-envelope text-hyper-green"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-[10px] text-gray-500 font-mono uppercase block">./Email_Protocol</span>
+                                            <span class="text-white group-hover/link:text-hyper-green transition-colors">jeet@elevatedpixels.com</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a href="tel:+919876543210" class="group/link block p-4 bg-white/[0.02] border border-white/10 hover:border-hyper-green hover:bg-white/[0.04] transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-hyper-green/10 border border-hyper-green/30 flex items-center justify-center">
+                                            <i class="fas fa-phone text-hyper-green"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-[10px] text-gray-500 font-mono uppercase block">./Voice_Channel</span>
+                                            <span class="text-white group-hover/link:text-hyper-green transition-colors">+91 98765 43210</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Social Network Nodes -->
+                            <div class="mb-8">
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-4 font-mono">./Network_Nodes</span>
+                                <div class="flex gap-4">
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-linkedin-in text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-github text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-instagram text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-twitter text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Tech Stack -->
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-4 font-mono">./Tech_Stack</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">React</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Node.js</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">TypeScript</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Python</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Firebase</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">AWS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prince Patel Dossier -->
+                <div id="prince" class="dossier-card group border border-white/10 bg-white/[0.02] hover:border-hyper-green/50 hover:bg-white/[0.04] transition-all duration-500 relative overflow-hidden" data-dossier="prince" onclick="toggleDossier('prince')">
+                    
+                    <!-- Corner Accents -->
+                    <div class="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/20 group-hover:border-hyper-green transition-colors"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/20 group-hover:border-hyper-green transition-colors"></div>
+                    
+                    <!-- Scanline Overlay -->
+                    <div class="scanline absolute inset-0"></div>
+
+                    <!-- Card Header (Always Visible) -->
+                    <div class="p-8 md:p-12 relative z-10">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 bg-hyper-green/10 border border-hyper-green/30 text-hyper-green text-[10px] font-mono uppercase tracking-widest">ID: EP-002</span>
+                                    <span class="w-2 h-2 bg-hyper-green rounded-full animate-pulse"></span>
+                                    <span class="text-[10px] font-mono text-hyper-green uppercase">Online</span>
+                                </div>
+                                <h2 class="font-display text-4xl md:text-5xl uppercase text-white mb-2 glitch">Prince Patel</h2>
+                                <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Co-Founder // Design Lead</span>
+                            </div>
+                            
+                            <!-- Expand Indicator -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-10 h-10 border border-white/20 group-hover:border-hyper-green flex items-center justify-center transition-colors dossier-toggle">
+                                    <i class="fas fa-chevron-down text-gray-500 group-hover:text-hyper-green transition-all duration-300 dossier-arrow"></i>
+                                </div>
+                                <span class="text-[8px] font-mono text-gray-600 uppercase">Access</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-3 gap-4 py-4 border-t border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Specialization</span>
+                                <span class="text-sm text-white font-mono">UI/UX Design</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Experience</span>
+                                <span class="text-sm text-white font-mono">5+ Years</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 font-mono uppercase block">Projects</span>
+                                <span class="text-sm text-white font-mono">50+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Dossier Details -->
+                    <div class="dossier-details">
+                        <div class="px-8 md:px-12 pb-12 relative z-10">
+                            
+                            <!-- Terminal Header -->
+                            <div class="bg-black/50 border border-white/10 p-4 mb-8">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                    <span class="ml-4 text-[10px] font-mono text-gray-500">DOSSIER://PRINCE_PATEL.classified</span>
+                                </div>
+                                <div class="font-mono text-xs text-gray-400">
+                                    <span class="text-hyper-green">$</span> cat contact_protocols.txt
+                                </div>
+                            </div>
+
+                            <!-- Contact Details Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <a href="mailto:prince@elevatedpixels.com" class="group/link block p-4 bg-white/[0.02] border border-white/10 hover:border-hyper-green hover:bg-white/[0.04] transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-hyper-green/10 border border-hyper-green/30 flex items-center justify-center">
+                                            <i class="fas fa-envelope text-hyper-green"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-[10px] text-gray-500 font-mono uppercase block">./Email_Protocol</span>
+                                            <span class="text-white group-hover/link:text-hyper-green transition-colors">prince@elevatedpixels.com</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a href="tel:+919123456789" class="group/link block p-4 bg-white/[0.02] border border-white/10 hover:border-hyper-green hover:bg-white/[0.04] transition-all">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-hyper-green/10 border border-hyper-green/30 flex items-center justify-center">
+                                            <i class="fas fa-phone text-hyper-green"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-[10px] text-gray-500 font-mono uppercase block">./Voice_Channel</span>
+                                            <span class="text-white group-hover/link:text-hyper-green transition-colors">+91 91234 56789</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Social Network Nodes -->
+                            <div class="mb-8">
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-4 font-mono">./Network_Nodes</span>
+                                <div class="flex gap-4">
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-linkedin-in text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-dribbble text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-behance text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                    <a href="#" class="w-14 h-14 border border-white/20 flex items-center justify-center hover:bg-hyper-green hover:text-black hover:border-hyper-green transition-all duration-300 group/social">
+                                        <i class="fab fa-instagram text-xl text-gray-400 group-hover/social:text-black"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Design Tools -->
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-4 font-mono">./Design_Arsenal</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Figma</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Adobe XD</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Photoshop</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Illustrator</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">After Effects</span>
+                                    <span class="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Framer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact Section -->
+    <section class="py-24 px-6 md:px-12 border-t border-white/10 bg-white/[0.01]">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- General Inquiry -->
+                <a href="mailto:hello@elevatedpixels.com" class="group p-8 border border-white/10 hover:border-hyper-green bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                    <div class="w-16 h-16 border border-white/20 group-hover:border-hyper-green flex items-center justify-center mb-6 transition-colors">
+                        <i class="fas fa-paper-plane text-2xl text-gray-500 group-hover:text-hyper-green transition-colors"></i>
+                    </div>
+                    <span class="text-[10px] text-gray-500 font-mono uppercase block mb-2">./General_Inquiry</span>
+                    <h3 class="font-display text-2xl uppercase text-white mb-2">Quick Message</h3>
+                    <p class="text-gray-500 text-sm font-mono">hello@elevatedpixels.com</p>
+                </a>
+
+                <!-- Location -->
+                <div class="group p-8 border border-white/10 hover:border-hyper-green bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                    <div class="w-16 h-16 border border-white/20 group-hover:border-hyper-green flex items-center justify-center mb-6 transition-colors">
+                        <i class="fas fa-map-marker-alt text-2xl text-gray-500 group-hover:text-hyper-green transition-colors"></i>
+                    </div>
+                    <span class="text-[10px] text-gray-500 font-mono uppercase block mb-2">./Base_Location</span>
+                    <h3 class="font-display text-2xl uppercase text-white mb-2">Headquarters</h3>
+                    <p class="text-gray-500 text-sm font-mono">Gujarat, India</p>
+                </div>
+
+                <!-- Response Time -->
+                <div class="group p-8 border border-white/10 hover:border-hyper-green bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+                    <div class="w-16 h-16 border border-white/20 group-hover:border-hyper-green flex items-center justify-center mb-6 transition-colors">
+                        <i class="fas fa-clock text-2xl text-gray-500 group-hover:text-hyper-green transition-colors"></i>
+                    </div>
+                    <span class="text-[10px] text-gray-500 font-mono uppercase block mb-2">./Response_Time</span>
+                    <h3 class="font-display text-2xl uppercase text-white mb-2">24-48 Hours</h3>
+                    <p class="text-gray-500 text-sm font-mono">Average reply time</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-black text-white pt-20 pb-10 border-t border-white/10 font-mono text-sm">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="flex flex-col gap-8">
+                    <div class="text-gray-500 uppercase tracking-widest text-xs">/// Initialize_Project</div>
+                    <h2 class="font-display text-5xl md:text-7xl uppercase leading-[0.9]">Ready to <br><span class="text-hyper-green">Elevate?</span></h2>
+                    <div class="w-full max-w-md bg-gray-900/50 border border-white/20 p-4 flex items-center gap-2 font-mono text-lg">
+                        <span class="text-hyper-green">➜</span>
+                        <span class="text-gray-400">~/project_inquiry/</span>
+                        <input type="email" id="footer-email" placeholder="enter_email" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 focus:ring-0">
+                        <div class="w-2 h-5 bg-hyper-green animate-pulse"></div>
+                    </div>
+                    <button id="footer-btn" onclick="runTerminalCommand()" class="w-full max-w-md py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-hyper-green transition-colors">[ Execute Launch ]</button>
+                </div>
+                <div class="grid grid-cols-2 gap-10 opacity-70">
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Sitemap</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="index.html" class="hover:text-hyper-green hover:translate-x-2 transition-all block">Index.html</a></li>
+                            <li><a href="about.html" class="hover:text-hyper-green hover:translate-x-2 transition-all block">About_Us.md</a></li>
+                            <li><a href="work.html" class="hover:text-hyper-green hover:translate-x-2 transition-all block">Work.vue</a></li>
+                            <li><a href="contact.html" class="hover:text-hyper-green hover:translate-x-2 transition-all block">Contact.sh</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-hyper-green mb-6 uppercase tracking-widest text-xs">./Social_Root</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li><a href="#" class="hover:text-hyper-green hover:translate-x-2 transition-all block">LinkedIn_Profile</a></li>
+                            <li><a href="#" class="hover:text-hyper-green hover:translate-x-2 transition-all block">GitHub_Repo</a></li>
+                            <li><a href="#" class="hover:text-hyper-green hover:translate-x-2 transition-all block">Instagram_Feed</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 ElevatedPixels. All systems operational.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span>STATUS: ONLINE</span><span>PING: 14ms</span><span>SERVER: US-EAST-1</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // --- MOBILE MENU LOGIC ---
+        function toggleMobileMenu(show) {
+            const menu = document.getElementById('mobile-menu');
+            const content = document.getElementById('mobile-menu-content');
+            
+            if (show) {
+                menu.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.remove('opacity-0');
+                    content.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                menu.classList.add('opacity-0');
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // --- DOSSIER TOGGLE LOGIC ---
+        let activeDossier = null;
+
+        // Auto-open dossier if hash is present in URL
+        function checkHashAndOpenDossier() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'jeet' || hash === 'prince') {
+                setTimeout(() => {
+                    toggleDossier(hash);
+                }, 300);
+            }
+        }
+        
+        // Check on page load
+        window.addEventListener('DOMContentLoaded', checkHashAndOpenDossier);
+        // Check on hash change (for SPA-like behavior)
+        window.addEventListener('hashchange', checkHashAndOpenDossier);
+
+        function toggleDossier(dossierId) {
+            const allCards = document.querySelectorAll('.dossier-card');
+            const clickedCard = document.querySelector(`[data-dossier="${dossierId}"]`);
+            const arrow = clickedCard.querySelector('.dossier-arrow');
+            
+            // If clicking the same card, close it
+            if (activeDossier === dossierId) {
+                clickedCard.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+                activeDossier = null;
+                return;
+            }
+            
+            // Close all cards first
+            allCards.forEach(card => {
+                card.classList.remove('active');
+                const cardArrow = card.querySelector('.dossier-arrow');
+                if (cardArrow) cardArrow.style.transform = 'rotate(0deg)';
+            });
+            
+            // Open clicked card
+            clickedCard.classList.add('active');
+            arrow.style.transform = 'rotate(180deg)';
+            activeDossier = dossierId;
+            
+            // Smooth scroll to card
+            setTimeout(() => {
+                clickedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Prevent link clicks from triggering card toggle
+        document.querySelectorAll('.dossier-details a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        // --- FOOTER TERMINAL LOGIC ---
+        const terminalInput = document.getElementById('footer-email');
+        const terminalButton = document.getElementById('footer-btn');
+        
+        if (terminalInput) {
+            terminalInput.addEventListener('keypress', (e) => { 
+                if (e.key === 'Enter') runTerminalCommand(); 
+            });
+        }
+
+        function runTerminalCommand() {
+            const val = terminalInput.value;
+            if (!val) { 
+                alert("ERROR: INPUT_NULL"); 
+                return; 
+            }
+            terminalButton.innerHTML = "[ EXECUTING... ]";
+            terminalButton.classList.add('bg-hyper-green');
+            setTimeout(() => {
+                terminalInput.value = '';
+                terminalButton.innerHTML = "[ EXECUTE LAUNCH ]";
+                terminalButton.classList.remove('bg-hyper-green');
+                alert(`TRANSMISSION RECEIVED: ${val}\nWe will contact you shortly.`);
+            }, 1500);
+        }
+
+        function scrollToFooter() {
+            document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
