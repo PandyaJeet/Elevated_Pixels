@@ -1,5 +1,5 @@
 # robots.txt for ElevatedPixels
-# https://elevatedpixels.com
+# https://elevatedpixels.app
 
 # Allow all crawlers full access
 User-agent: *
@@ -9,7 +9,7 @@ Allow: /
 Disallow: /404.html
 
 # Sitemap location
-Sitemap: https://elevatedpixels.com/sitemap.xml
+Sitemap: https://elevatedpixels.app/sitemap.xml
 
 # Crawl delay (optional - be nice to servers)
 Crawl-delay: 1

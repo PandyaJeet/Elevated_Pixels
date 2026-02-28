@@ -190,7 +190,7 @@
 
 ### Submit to Search Engines
 1. **Google Search Console**: https://search.google.com/search-console
-   - Submit sitemap: `https://elevatedpixels.com/sitemap.xml`
+   - Submit sitemap: `https://elevatedpixels.app/sitemap.xml`
    - Request indexing for all pages
 
 2. **Bing Webmaster Tools**: https://www.bing.com/webmasters

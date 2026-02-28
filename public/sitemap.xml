@@ -6,34 +6,42 @@
     
     <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://elevatedpixels.com/</loc>
-        <lastmod>2026-01-22</lastmod>
+        <loc>https://elevatedpixels.app/</loc>
+        <lastmod>2026-02-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     
     <!-- About Page -->
     <url>
-        <loc>https://elevatedpixels.com/about.html</loc>
-        <lastmod>2026-01-22</lastmod>
+        <loc>https://elevatedpixels.app/about.html</loc>
+        <lastmod>2026-02-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <!-- Work/Portfolio Page -->
     <url>
-        <loc>https://elevatedpixels.com/work.html</loc>
-        <lastmod>2026-01-22</lastmod>
+        <loc>https://elevatedpixels.app/work.html</loc>
+        <lastmod>2026-02-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
     <!-- Strategy/Services Page -->
     <url>
-        <loc>https://elevatedpixels.com/strategy.html</loc>
-        <lastmod>2026-01-22</lastmod>
+        <loc>https://elevatedpixels.app/strategy.html</loc>
+        <lastmod>2026-02-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    
+    <!-- Contact Page -->
+    <url>
+        <loc>https://elevatedpixels.app/contact.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     
 </urlset>
