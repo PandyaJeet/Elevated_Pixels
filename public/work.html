@@ -66,10 +66,10 @@
                 {
                     "@type": "CreativeWork",
                     "position": 1,
-                    "name": "Nova Bank",
-                    "description": "Digital transformation for a neo-bank with WebGL landing page",
-                    "genre": "Fintech",
-                    "keywords": ["React", "Three.js"]
+                    "name": "B.V. Doshi",
+                    "description": "Elegant portfolio template for an interior designer & architect",
+                    "genre": "Interior Design & Architecture",
+                    "keywords": ["HTML/CSS", "Template"]
                 },
                 {
                     "@type": "CreativeWork",
@@ -221,20 +221,19 @@
         <div class="group border-b border-white/10 grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
             <div class="p-8 md:p-16 flex flex-col justify-between border-r border-white/10">
                 <div>
-                    <span class="font-mono text-xs text-gray-500">01 / FINTECH</span>
-                    <h2 class="font-display text-6xl mt-4 mb-6 group-hover:text-hyper-green transition-colors">Nova Bank</h2>
+                    <span class="font-mono text-xs text-gray-500">01 / INTERIOR DESIGN & ARCHITECTURE</span>
+                    <h2 class="font-display text-6xl mt-4 mb-6 group-hover:text-hyper-green transition-colors">B.V. Doshi</h2>
                     <p class="text-gray-400 max-w-md leading-relaxed">
-                        A complete digital transformation for a neo-bank. We engineered a WebGL landing page that visualizes real-time transaction data.
+                        A refined, elegant portfolio crafted for an interior designer & architect — featuring smooth animations, curated imagery, and a seamless user experience. This template is available for your brand. <span class="text-hyper-green">Contact us</span> to get yours.
                     </p>
                 </div>
                 <div class="flex gap-4 mt-8">
-                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">React</span>
-                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Three.js</span>
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">HTML/CSS</span>
+                    <span class="border border-white/20 px-3 py-1 text-xs uppercase text-gray-300">Template</span>
                 </div>
             </div>
-            <div class="relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=1000&auto=format&fit=crop" alt="Nova Bank fintech website project - WebGL landing page with real-time transaction data visualization built with React and Three.js" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+            <div class="desktop-preview relative overflow-hidden bg-black">
+                <iframe src="/Templates/TP/index.html" title="Template Preview" width="1440" height="900" style="position:absolute;top:50%;left:50%;width:1440px;height:900px;transform-origin:center center;border:0;filter:grayscale(100%);transition:filter 0.7s;" loading="lazy" sandbox="allow-scripts allow-same-origin" onmouseenter="this.style.filter='grayscale(0)'" onmouseleave="this.style.filter='grayscale(100%)'"></iframe>
             </div>
         </div>
 
@@ -396,6 +395,20 @@
                 e.target.reset();
             }, 1500);
         }
+
+        // --- DESKTOP PREVIEW SCALING ---
+        function scaleDesktopPreviews() {
+            document.querySelectorAll('.desktop-preview').forEach(container => {
+                const iframe = container.querySelector('iframe');
+                if (!iframe) return;
+                var scaleX = container.offsetWidth / 1440;
+                var scaleY = container.offsetHeight / 900;
+                var scale = Math.min(scaleX, scaleY);
+                iframe.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
+            });
+        }
+        window.addEventListener('load', scaleDesktopPreviews);
+        window.addEventListener('resize', scaleDesktopPreviews);
     </script>
 </body>
 </html>
