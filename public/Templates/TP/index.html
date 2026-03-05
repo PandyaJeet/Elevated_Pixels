@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.V DOSHI | BESPOKE INTERIORS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'oat': '#F0EADC',    // "Eggshell" - The Background
+                        'cocoa': '#576238',  // "Moss" - The Text/Primary
+                        'mocha': '#3F4728',  // Deep Moss for hover states
+                    },
+                    fontFamily: {
+                        'serif': ['"Fraunces"', 'serif'],
+                        'sans': ['"Geist"', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'pill': '9999px', // Fully rounded buttons
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F0EADC; color: #576238; }
+        
+        /* LUXURY UTILS */
+        .hairline { border-bottom: 1px solid rgba(87, 98, 56, 0.15); }
+        .section-padding { padding-top: 8rem; padding-bottom: 8rem; }
+        
+        /* THE "LUXURY PILL" BUTTON */
+        .btn-luxury {
+            border: 1px solid rgba(87, 98, 56, 0.3);
+            border-radius: 9999px; /* Pill Shape */
+            padding: 1rem 2.5rem;
+            font-family: 'Geist', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* Slow "Thehrav" transition */
+            background: transparent;
+            color: #576238;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .btn-luxury:hover {
+            background-color: #576238;
+            color: #F0EADC;
+            border-color: #576238;
+            padding-left: 3rem; /* Subtle movement */
+            padding-right: 2rem;
+        }
+        
+        /* INVERTED BUTTON (For Dark Sections) */
+        .btn-luxury-light {
+            border: 1px solid rgba(240, 234, 220, 0.3);
+            color: #F0EADC;
+        }
+        .btn-luxury-light:hover {
+            background-color: #F0EADC;
+            color: #576238;
+            border-color: #F0EADC;
+        }
+
+        /* IMAGE REVEAL MASK */
+        .reveal-img-container { position: relative; overflow: hidden; border-radius: 8px; }
+        .reveal-curtain {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #F0EADC; z-index: 2; /* Matches body */
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            transform-origin: bottom;
+        }
+        .bg-cocoa .reveal-curtain { background-color: #576238; } /* Matches dark section */
+        .reveal-img-container.active .reveal-curtain { transform: scaleY(0); }
+        
+        /* HIDE SCROLLBAR */
+        ::-webkit-scrollbar { display: none; }
+        
+        /* ACCORDION ANIMATION */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        ::selection { background: #576238; color: #F0EADC; }
+    </style>
+</head>
+<body class="antialiased selection:bg-cocoa selection:text-oat">
+
+    <nav class="fixed top-0 w-full px-6 py-8 md:px-12 flex justify-between items-center z-50 mix-blend-multiply">
+        <a href="#" class="font-serif text-xl tracking-wide font-medium">B.V Doshi.</a>
+        <a href="#contact" class="btn-luxury py-3 px-8 text-xs font-semibold">
+            Consult
+        </a>
+    </nav>
+
+    <header class="h-screen flex flex-col justify-between px-6 md:px-12 pt-40 pb-12">
+        <div class="max-w-5xl">
+            <h1 class="font-serif text-[12vw] md:text-[6.5vw] leading-[0.95] mb-8 text-cocoa">
+                Designing <span class="italic font-light">Exceptional</span> Spaces for <span class="italic font-light">Exceptional</span> Lives.
+            </h1>
+            <p class="font-sans text-lg md:text-xl text-cocoa/80 max-w-xl leading-relaxed mb-12 font-light">
+                Bespoke interior and exterior design for private residences, luxury villas, and premium commercial spaces.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6">
+                <a href="#portfolio" class="btn-luxury bg-cocoa text-oat border-cocoa hover:bg-transparent hover:text-cocoa">View Portfolio</a>
+                <a href="#contact" class="btn-luxury">Schedule Consultation</a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 pt-8">
+            <div><p class="font-sans text-[10px] uppercase tracking-widest text-cocoa/60 mb-1">Experience</p><p class="font-serif text-3xl">10+ Years</p></div>
+            <div><p class="font-sans text-[10px] uppercase tracking-widest text-cocoa/60 mb-1">Delivered</p><p class="font-serif text-3xl">150+ Projects</p></div>
+            <div><p class="font-sans text-[10px] uppercase tracking-widest text-cocoa/60 mb-1">Service</p><p class="font-serif text-3xl">Pan-India</p></div>
+            <div><p class="font-sans text-[10px] uppercase tracking-widest text-cocoa/60 mb-1">Execution</p><p class="font-serif text-3xl">Turnkey</p></div>
+        </div>
+    </header>
+
+    <section id="portfolio-section" class="bg-cocoa text-oat relative overflow-hidden">
+        <div id="portfolio-track" class="flex h-screen w-[400vw]">
+            
+            <div class="w-screen h-full flex flex-col justify-center px-6 md:px-12 shrink-0 border-r border-oat/10">
+                <span class="font-sans text-xs uppercase tracking-[0.2em] text-oat/50 mb-6">Selected Works</span>
+                <h2 class="font-serif text-[9vw] leading-none">Proof,<br>Not Promises.</h2>
+                <div class="mt-12 flex items-center gap-4 opacity-50">
+                    <span class="text-xs uppercase tracking-widest">Scroll to Explore</span>
+                    <div class="w-16 h-[1px] bg-oat"></div>
+                </div>
+            </div>
+
+            <div class="w-screen h-full flex flex-col md:flex-row shrink-0">
+                <div class="w-full md:w-2/3 h-1/2 md:h-full relative reveal-img-container bg-cocoa" data-trigger>
+                    <div class="reveal-curtain bg-cocoa"></div> <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-1000">
+                </div>
+                <div class="w-full md:w-1/3 h-1/2 md:h-full p-8 md:p-16 flex flex-col justify-center border-r border-oat/10">
+                    <span class="font-sans text-xs uppercase tracking-widest text-oat/50 mb-4">Residential</span>
+                    <h3 class="font-serif text-4xl md:text-5xl mb-6">The Stone House</h3>
+                    <ul class="font-sans text-sm text-oat/70 space-y-4 mb-8">
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Location</span> <span>Vadodara, GJ</span></li>
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Area</span> <span>4,500 sq.ft</span></li>
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Timeline</span> <span>14 Months</span></li>
+                    </ul>
+                    <p class="font-serif italic text-lg opacity-80 mb-8">"Complete design and turnkey execution including planning, materials, and custom furniture."</p>
+                    <button class="btn-luxury btn-luxury-light self-start">View Case Study</button>
+                </div>
+            </div>
+
+             <div class="w-screen h-full flex flex-col md:flex-row shrink-0">
+                <div class="w-full md:w-2/3 h-1/2 md:h-full relative reveal-img-container bg-cocoa" data-trigger>
+                    <div class="reveal-curtain bg-cocoa"></div>
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-1000">
+                </div>
+                <div class="w-full md:w-1/3 h-1/2 md:h-full p-8 md:p-16 flex flex-col justify-center border-r border-oat/10">
+                    <span class="font-sans text-xs uppercase tracking-widest text-oat/50 mb-4">Luxury Villa</span>
+                    <h3 class="font-serif text-4xl md:text-5xl mb-6">Azure Estate</h3>
+                    <ul class="font-sans text-sm text-oat/70 space-y-4 mb-8">
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Location</span> <span>Mumbai, MH</span></li>
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Area</span> <span>12,000 sq.ft</span></li>
+                    </ul>
+                    <p class="font-serif italic text-lg opacity-80 mb-8">"Facade treatments, landscape integration, and bespoke outdoor living spaces."</p>
+                    <button class="btn-luxury btn-luxury-light self-start">View Case Study</button>
+                </div>
+            </div>
+
+            <div class="w-screen h-full flex flex-col md:flex-row shrink-0">
+                <div class="w-full md:w-2/3 h-1/2 md:h-full relative reveal-img-container bg-cocoa" data-trigger>
+                    <div class="reveal-curtain bg-cocoa"></div>
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-1000">
+                </div>
+                <div class="w-full md:w-1/3 h-1/2 md:h-full p-8 md:p-16 flex flex-col justify-center">
+                    <span class="font-sans text-xs uppercase tracking-widest text-oat/50 mb-4">Hospitality</span>
+                    <h3 class="font-serif text-4xl md:text-5xl mb-6">Hotel Onyx</h3>
+                    <ul class="font-sans text-sm text-oat/70 space-y-4 mb-8">
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Location</span> <span>Udaipur, RJ</span></li>
+                        <li class="flex justify-between border-b border-oat/20 pb-2"><span>Area</span> <span>25,000 sq.ft</span></li>
+                    </ul>
+                    <p class="font-serif italic text-lg opacity-80 mb-8">"End-to-end delivery including procurement, lighting, and site supervision."</p>
+                    <button class="btn-luxury btn-luxury-light self-start">View Case Study</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-padding px-6 md:px-12 bg-oat">
+        <h2 class="font-serif text-4xl md:text-6xl mb-20 text-cocoa">Expertise</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-20">
+            
+            <div class="group">
+                <h3 class="font-serif text-2xl mb-4 text-cocoa group-hover:italic transition-all">Interior Design</h3>
+                <p class="font-sans text-sm text-cocoa/70 leading-relaxed border-t border-cocoa/10 pt-4">
+                    Concept development, space planning, material selection, custom furniture, lighting, and styling.
+                </p>
+            </div>
+
+            <div class="group">
+                <h3 class="font-serif text-2xl mb-4 text-cocoa group-hover:italic transition-all">Exterior & Facade</h3>
+                <p class="font-sans text-sm text-cocoa/70 leading-relaxed border-t border-cocoa/10 pt-4">
+                    Architecture aesthetics, facade treatments, landscape integration, outdoor living spaces.
+                </p>
+            </div>
+
+            <div class="group">
+                <h3 class="font-serif text-2xl mb-4 text-cocoa group-hover:italic transition-all">Turnkey Execution</h3>
+                <p class="font-sans text-sm text-cocoa/70 leading-relaxed border-t border-cocoa/10 pt-4">
+                    End-to-end delivery including procurement, contractors, site supervision, and handover.
+                </p>
+            </div>
+
+            <div class="group">
+                <h3 class="font-serif text-2xl mb-4 text-cocoa group-hover:italic transition-all">Renovation</h3>
+                <p class="font-sans text-sm text-cocoa/70 leading-relaxed border-t border-cocoa/10 pt-4">
+                    Structural upgrades, modernisation, and complete transformations of existing spaces.
+                </p>
+            </div>
+
+            <div class="group">
+                <h3 class="font-serif text-2xl mb-4 text-cocoa group-hover:italic transition-all">Design Consultation</h3>
+                <p class="font-sans text-sm text-cocoa/70 leading-relaxed border-t border-cocoa/10 pt-4">
+                    Strategy, layout optimisation, and high-level design direction for self-builders.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-padding px-6 md:px-12 bg-cocoa text-oat">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+            
+            <div>
+                <h2 class="font-serif text-3xl md:text-5xl mb-8 leading-tight">Design with Precision.<br>Deliver with Discipline.</h2>
+                <div class="font-sans text-sm text-oat/70 space-y-6 leading-relaxed">
+                    <p>We are a full-service luxury design studio specialising in bespoke interiors and exteriors. Our work combines aesthetics, engineering precision, and flawless execution.</p>
+                    <ul class="space-y-2 border-l border-oat/20 pl-6">
+                        <li>Founded in 2014</li>
+                        <li>In-house design + execution team</li>
+                        <li>Trusted vendor network</li>
+                    </ul>
+                    <p class="font-bold text-oat">No fluff, no promises — only delivered results.</p>
+                </div>
+            </div>
+
+            <div class="border border-oat/10 p-12 rounded-2xl">
+                <h3 class="font-serif text-3xl mb-6">Investment</h3>
+                <p class="font-sans text-sm text-oat/70 mb-8 leading-relaxed">
+                    Every project is bespoke and priced according to scope, scale, and material selection. Detailed estimates are provided after consultation.
+                </p>
+                <div class="mb-8">
+                    <p class="font-sans text-[10px] uppercase tracking-widest text-oat/50 mb-2">Residential Projects</p>
+                    <p class="font-serif text-2xl">Begin at ₹3,500 per sq.ft</p>
+                </div>
+                <button class="btn-luxury btn-luxury-light">Request Proposal</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding px-6 md:px-12 bg-oat">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            
+            <div>
+                <h2 class="font-serif text-5xl md:text-7xl mb-12 text-cocoa">Start Your<br>Project.</h2>
+                <div class="space-y-8 font-sans text-sm text-cocoa/80">
+                    <div>
+                        <p class="uppercase tracking-widest text-[10px] mb-1 text-cocoa font-bold">Phone</p>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div>
+                        <p class="uppercase tracking-widest text-[10px] mb-1 text-cocoa font-bold">Email</p>
+                        <p>studio@bvdoshi.com</p>
+                    </div>
+                    <div>
+                        <p class="uppercase tracking-widest text-[10px] mb-1 text-cocoa font-bold">Office</p>
+                        <p>Alkapuri, Vadodara, Gujarat 390007</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="space-y-8">
+                <div class="grid grid-cols-2 gap-8">
+                    <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40">
+                    <input type="text" placeholder="Phone" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40">
+                </div>
+                <input type="email" placeholder="Email" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40">
+                <div class="grid grid-cols-2 gap-8">
+                    <input type="text" placeholder="Project Type" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40">
+                    <input type="text" placeholder="Approx Budget" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40">
+                </div>
+                <textarea placeholder="Message" rows="4" class="w-full bg-transparent border-b border-cocoa/20 py-4 focus:outline-none focus:border-cocoa font-sans text-cocoa placeholder-cocoa/40"></textarea>
+                
+                <button type="submit" class="btn-luxury w-full md:w-auto mt-4">
+                    Schedule Consultation
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+    <footer class="bg-cocoa text-oat/40 py-12 px-6 md:px-12 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-[10px] font-sans uppercase tracking-widest">
+        <p>© 2026 B.V Doshi</p>
+        <div class="flex gap-8 mt-4 md:mt-0">
+            <a href="#" class="hover:text-oat transition-colors">Instagram</a>
+            <a href="#" class="hover:text-oat transition-colors">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // 1. SMOOTH SCROLL
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // 2. SCROLL ANIMATIONS
+        gsap.registerPlugin(ScrollTrigger);
+
+        // A. Horizontal Scroll for Portfolio
+        let portfolioSection = document.getElementById("portfolio-section");
+        let portfolioTrack = document.getElementById("portfolio-track");
+        
+        gsap.to(portfolioTrack, {
+            x: () => -(portfolioTrack.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: portfolioSection,
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + portfolioTrack.scrollWidth,
+                invalidateOnRefresh: true,
+            }
+        });
+
+        // B. Image Reveal
+        let projectImages = document.querySelectorAll(".reveal-img-container");
+        projectImages.forEach((container) => {
+            ScrollTrigger.create({
+                trigger: container,
+                containerAnimation: gsap.getTweensOf(portfolioTrack)[0],
+                start: "left center",
+                onEnter: () => container.classList.add('active'),
+                once: true
+            });
+        });
+
+        // C. Header Fade
+        gsap.to("header h1", {
+            opacity: 0,
+            y: -30,
+            scrollTrigger: {
+                trigger: "header",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+    </script>
+</body>
+</html>
